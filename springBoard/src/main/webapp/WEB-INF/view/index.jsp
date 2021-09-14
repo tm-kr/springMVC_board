@@ -40,8 +40,6 @@
 				</div>
 				<div class="list shadow-sm">
 				
-		
-				
 					<a href="#">
 					<div class="list-card ">
 							<div class="card">
