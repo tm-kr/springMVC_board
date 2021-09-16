@@ -15,11 +15,13 @@ public class LoginCommand {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
 	public LoginCommand(String id, String password) {
 		this.id = id;
 		this.password = password;
 	}
 	
 	public LoginCommand() {
+		
 	}
 }

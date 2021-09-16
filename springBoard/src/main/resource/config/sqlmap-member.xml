@@ -11,8 +11,9 @@
 		(#{id}, #{password}, #{name}, #{email})
 	</insert>
 	
-	<select id="">
-		
+	<select id="login" parameterType="LoginCommand" resultType="LoginCommand">
+		SELECT * FROM
+		MEMBER WHERE id = #{id}
 	</select>
 	
 </mapper>

@@ -23,8 +23,10 @@ public class MemberService {
 		memberDAO.join(memberVO);
 	}
 	
-	public void login(LoginCommand loginCommand) {
-		memberDAO.login(loginCommand);
+	public LoginCommand login(LoginCommand loginCommand) {
+		System.out.println("service작동");
+		return memberDAO.login(loginCommand);
+		
 	}
 	
 }

@@ -1,5 +1,7 @@
 package controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,9 +35,23 @@ public class MemberController {
 		return "/login";
 	}
 	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public String login(LoginCommand loginCommand) {
-		memberService.login(loginCommand);
+	public String login(LoginCommand loginCommand, HttpSession session) {
+		LoginCommand lm = (LoginCommand) memberService.login(loginCommand);
+		try {
+			if(loginCommand.getPassword().equals(lm.getPassword())) {
+				session.setAttribute("id", lm.getId());
+				return "/index";
+			}
+		}catch (NullPointerException e) {
+			e.printStackTrace();
+		}
 		return "/login";
+	}
+	
+	@RequestMapping(value="/logout", method=RequestMethod.GET)
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/index";
 	}
 	
 

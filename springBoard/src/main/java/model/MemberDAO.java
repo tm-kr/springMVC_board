@@ -1,7 +1,6 @@
 package model;
 
 import org.mybatis.spring.SqlSessionTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import controller.LoginCommand;
@@ -18,11 +17,12 @@ public class MemberDAO {
 	}
 
 	public void join(MemberVO memberVO) {
-		System.out.println("sqlsession 실행 dao실행");
 		sqlSessionTemplate.insert("join", memberVO);
 	}
 	
-	public void login(LoginCommand loginCommand) {
-		
+	public LoginCommand login(LoginCommand loginCommand) {
+		System.out.println("dao작동");
+		LoginCommand lm = (LoginCommand)sqlSessionTemplate.selectOne("login", loginCommand.getId());
+		return lm;
 	}
 }

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +15,12 @@
 	<div class="header shadow">
 		<div class="header2">
 			<h3 style="float: left"><a href="index" style="color: white">Simple board</a></h3>
+			<c:if test="${empty sessionScope.id }">
 			<button style="float: right" type="button" class="btn btn-outline-light" onclick="location.href='login'">로그인</button>
+			</c:if>
+			<c:if test="${not empty sessionScope.id }">
+				<button style="float: right" type="button" class="btn btn-outline-light" onclick="location.href='logout'">로그아웃</button>
+			</c:if>
 		</div>
 		
 	</div>
@@ -25,9 +32,9 @@
 			</div>
 			<form:form commandName="LoginCommand" method="POST">
 				<input type="text" class="form-control" placeholder="아이디" name="id" ><br>
-				<input type="password" class="form-control mb-5" placeholder="비밀번호" name="pass">
+				<input type="password" class="form-control mb-5" placeholder="비밀번호" name="password">
 				<div class=" mb-3">
-					<button type="submit" class="btn btn-primary mb-3" onclick="location.href='${pageContext.request.contextPath}/login'">로그인</button>
+					<button type="submit" class="btn btn-primary mb-3" >로그인</button>
 				</div>
 			</form:form>
 			<h6>아이디가 없으신가요? <a href="join">회원가입하기</a></h6>

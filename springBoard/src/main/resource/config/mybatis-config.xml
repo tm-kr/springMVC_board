@@ -12,6 +12,7 @@
 	
 	<typeAliases>
 		<typeAlias alias="memberVO" type="model.MemberVO"/>
+		<typeAlias alias="loginCommand" type="controller.LoginCommand"/>
 	</typeAliases>
 	
 </configuration>
