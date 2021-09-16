@@ -23,13 +23,13 @@
 			<div class="mt-5 mb-5 border-bottom">
 				<h2 class="mb-3"><b>Simple board</b></h2>
 			</div>
-			<form method="post" action="${pageContext.request.contextPath}/login">
+			<form:form commandName="LoginCommand" method="POST">
 				<input type="text" class="form-control" placeholder="아이디" name="id" ><br>
 				<input type="password" class="form-control mb-5" placeholder="비밀번호" name="pass">
 				<div class=" mb-3">
 					<button type="submit" class="btn btn-primary mb-3" onclick="location.href='${pageContext.request.contextPath}/login'">로그인</button>
 				</div>
-			</form>
+			</form:form>
 			<h6>아이디가 없으신가요? <a href="join">회원가입하기</a></h6>
 		</div>
 	</div>

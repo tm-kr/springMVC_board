@@ -3,23 +3,23 @@ package controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import model.MemberVO;
+import service.MemberService;
 
 @Controller
 public class BoardController {
 	
+	private MemberService memberService;
+	
+	public void setMemberService(MemberService memberService) {
+		this.memberService = memberService;
+	}
+	
 	@RequestMapping(value="/index")
 	public String list(Model model) {
 		return "/index";
-	}
-	
-	@RequestMapping(value="/join")
-	public String join(Model model) {
-		return "/join";
-	}
-	
-	@RequestMapping(value="/login")
-	public String login(Model model) {
-		return "/login";
 	}
 	
 	@RequestMapping(value="/read")
