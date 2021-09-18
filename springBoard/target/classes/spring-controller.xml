@@ -3,11 +3,15 @@
  	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 	  http://www.springframework.org/schema/beans/spring-beans.xsd">
+
 	  
-	  <bean class="controller.BoardController" />
+	  <bean class="controller.BoardController">
+	  	<property name="boardService" ref="boardService"></property>
+	  </bean>
 	  
 	   <bean class="controller.MemberController">
 	  	<property name="memberService" ref="memberService"></property>
 	  </bean>
+	  
 	  
 </beans>

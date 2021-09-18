@@ -36,6 +36,7 @@
 	  	<property name="mapperLocations" >
 	  		<list>
 	  			<value>classpath:config/sqlmap-member.xml</value>
+	  			<value>classpath:config/sqlmap-board.xml</value>
 	  		</list>
 	  	</property>
   </bean>
@@ -44,16 +45,18 @@
   		destroy-method="clearCache">
   		<constructor-arg ref="sqlSessionFactory" />
   </bean>
-  
-  
  
   <bean id="memberService" class="service.MemberService">
   		<property name="memberDAO" ref="memberDAO" />
   </bean>
-  
-  
- 
   <bean id="memberDAO" class="model.MemberDAO">
+  		<constructor-arg ref="sqlSessionTemplate" />
+  </bean>
+  
+   <bean id="boardService" class="service.BoardService">
+  		<property name="boardDAO" ref="boardDAO" />
+  </bean>
+  <bean id="boardDAO" class="model.BoardDAO">
   		<constructor-arg ref="sqlSessionTemplate" />
   </bean>
   

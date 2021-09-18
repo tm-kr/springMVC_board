@@ -21,7 +21,6 @@ public class MemberDAO {
 	}
 	
 	public LoginCommand login(LoginCommand loginCommand) {
-		System.out.println("dao작동");
 		LoginCommand lm = (LoginCommand)sqlSessionTemplate.selectOne("login", loginCommand.getId());
 		return lm;
 	}

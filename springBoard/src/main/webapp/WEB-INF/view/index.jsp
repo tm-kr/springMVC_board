@@ -30,7 +30,9 @@
 				<div class="search shadow-sm">
 					<div class="search-top">
 						<h2 style="float: left">전체</h2>
+						<c:if test="${not empty sessionScope.id }">
 						<div style="float: right"><a href="write"><img alt="" src="${pageContext.request.contextPath}/resources/img/write.jpg"></a></div>
+						</c:if>
 					</div>
 					<br><br>
 					<div>

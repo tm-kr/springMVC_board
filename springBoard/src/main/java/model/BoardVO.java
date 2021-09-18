@@ -8,20 +8,16 @@ public class BoardVO {
 	private String title;
 	private String writer;
 	private Timestamp regdate;
-	private int view;
+	private int views;
 	private String content;
 	
 	public BoardVO() {
 	}
 	
-	public BoardVO(int num, String category, String title, String writer, Timestamp regdate, int view, String content) {
-		super();
-		this.num = num;
+	public BoardVO(String category, String title, String writer, String content) {
 		this.category = category;
 		this.title = title;
 		this.writer = writer;
-		this.regdate = regdate;
-		this.view = view;
 		this.content = content;
 	}
 	
@@ -55,11 +51,11 @@ public class BoardVO {
 	public void setRegdate(Timestamp regdate) {
 		this.regdate = regdate;
 	}
-	public int getView() {
-		return view;
+	public int getViews() {
+		return views;
 	}
-	public void setView(int view) {
-		this.view = view;
+	public void setViews(int views) {
+		this.views = views;
 	}
 	public String getContent() {
 		return content;

@@ -5,18 +5,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import model.MemberVO;
-import service.MemberService;
+import model.BoardVO;
+import service.BoardService;
 
 @Controller
 public class BoardController {
 	
-	private MemberService memberService;
-	
-	public void setMemberService(MemberService memberService) {
-		this.memberService = memberService;
+	private BoardService boardService;
+
+	public void setBoardService(BoardService boardService) {
+		this.boardService = boardService;
 	}
-	
+
 	@RequestMapping(value="/index")
 	public String list(Model model) {
 		return "/index";
@@ -27,9 +27,15 @@ public class BoardController {
 		return "/read";
 	}
 	
-	@RequestMapping(value="/write")
-	public String write(Model model) {
-		return "//write";
+	@RequestMapping(value="/write", method=RequestMethod.GET)
+	public String write() {
+		return "/write";
+	}
+	
+	@RequestMapping(value="/write", method=RequestMethod.POST)
+	public String write(BoardVO boardVO) {
+		boardService.write(boardVO);
+		return "/write";
 	}
 	
 	
