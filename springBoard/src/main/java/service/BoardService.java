@@ -21,9 +21,6 @@ public class BoardService {
 	}
 
 	public void write(BoardVO boardVO) {
-		System.out.println("service 작동");
-		System.out.println(boardVO.getContent());
-		System.out.println(boardVO.getCategory());
 		boardDAO.write(boardVO);
 	}
 	

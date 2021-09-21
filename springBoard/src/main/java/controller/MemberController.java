@@ -40,7 +40,7 @@ public class MemberController {
 		try {
 			if(loginCommand.getPassword().equals(lm.getPassword())) {
 				session.setAttribute("id", lm.getId());
-				return "/index";
+				return "redirect:/index";
 			}
 		}catch (NullPointerException e) {
 			e.printStackTrace();

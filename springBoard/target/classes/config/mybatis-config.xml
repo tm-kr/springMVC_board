@@ -15,6 +15,7 @@
 		<typeAlias alias="memberVO" type="model.MemberVO"/>
 		<typeAlias alias="boardVO" type="model.BoardVO"/>
 		<typeAlias alias="loginCommand" type="controller.LoginCommand"/>
+		<typeAlias alias="pageVO" type="paging.PageVO"/>
 	</typeAliases>
 	
 </configuration>

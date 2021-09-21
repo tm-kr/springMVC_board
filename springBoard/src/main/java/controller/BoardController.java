@@ -7,19 +7,32 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import model.BoardVO;
+import paging.PageCalc;
 import service.BoardService;
 
 @Controller
 public class BoardController {
 	
 	private BoardService boardService;
+	private PageCalc pageCalc;
 
 	public void setBoardService(BoardService boardService) {
 		this.boardService = boardService;
 	}
+	public void setPageCalc(PageCalc pageCalc) {
+		this.pageCalc = pageCalc;
+	}
+	
 
 	@RequestMapping(value="/index")
 	public String list(Model model) {
+		model.addAttribute("boardList", boardService.list());
+		return "/index";
+	}
+	
+	@RequestMapping(value="/index/{currentPage}")
+	public String listPage(Model model, @PathVariable int currentPage) {
+		pageCalc.pageCalc(currentPage, 0);
 		model.addAttribute("boardList", boardService.list());
 		return "/index";
 	}
@@ -37,7 +50,6 @@ public class BoardController {
 	
 	@RequestMapping(value="/write", method=RequestMethod.POST)
 	public String write(BoardVO boardVO) {
-		System.out.println(boardVO.getCategory());
 		boardService.write(boardVO);
 		return "redirect:/index";
 	}

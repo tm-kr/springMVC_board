@@ -60,4 +60,7 @@
   		<constructor-arg ref="sqlSessionTemplate" />
   </bean>
   
+  <bean id="pageCalc" class="paging.PageCalc">
+  </bean>
+  
 </beans>

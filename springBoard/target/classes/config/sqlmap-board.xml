@@ -4,6 +4,31 @@
 
 <mapper namespace="boardDAO">
 	
+	<!-- 페이지 조회 -->
+	<select id="list" parameterType="int" resultType="boardVO">
+		<![CDATA[
+		  select * from (select rownum rnum, board.* from
+		(select * from board order by NUM desc) board)
+		where rnum >= 1 and rnum <=5
+		 ]]>
+	</select>
+	
+	<!-- 페이지 조회 페이징처리 -->
+	<select id="listPage" parameterType="pageVO" resultType="boardVO">
+		 <![CDATA[
+		  select * from (select rownum rnum, board.* from
+		(select * from board order by NUM desc) board)
+		where rnum >= #{startPage} and rnum <= #{endPage}
+		 ]]>
+	</select>
+	
+	<!-- 게시물 보기 -->
+	<select id="read" parameterType="int" resultType="boardVO">
+		select * from BOARD
+		WHERE num = #{num}
+	</select>
+	
+	<!-- 게시물 작성 -->
 	<insert id="write" parameterType="boardVO">
 		insert into "BOARD" 
 		(num, category, title, writer, regdate, views, content) 
@@ -11,13 +36,4 @@
 		(BOARD_SEQ.nextval, #{category}, #{title}, #{writer}, SYSDATE, 0, #{content})
 	</insert>
 	
-	<select id="list" parameterType="int" resultType="boardVO">
-		SELECT * FROM
-		BOARD ORDER BY num desc
-	</select>
-	
-	<select id="read" parameterType="int" resultType="boardVO">
-		select * from BOARD
-		WHERE num = #{num}
-	</select>
 </mapper>
