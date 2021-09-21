@@ -1,5 +1,7 @@
 package model;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -19,5 +21,11 @@ public class BoardDAO {
 		sqlSessionTemplate.insert("write", boardVO);
 	}
 	
+	public List<BoardVO> list() {
+		return sqlSessionTemplate.selectList("list");
+	}
+	public BoardVO read(int num) {
+		return sqlSessionTemplate.selectOne("read", num);
+	}
 	
 }

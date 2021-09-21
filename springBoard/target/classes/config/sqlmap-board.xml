@@ -11,4 +11,13 @@
 		(BOARD_SEQ.nextval, #{category}, #{title}, #{writer}, SYSDATE, 0, #{content})
 	</insert>
 	
+	<select id="list" parameterType="int" resultType="boardVO">
+		SELECT * FROM
+		BOARD ORDER BY num desc
+	</select>
+	
+	<select id="read" parameterType="int" resultType="boardVO">
+		select * from BOARD
+		WHERE num = #{num}
+	</select>
 </mapper>

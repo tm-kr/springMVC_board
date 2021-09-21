@@ -24,7 +24,6 @@ public class MemberService {
 	}
 	
 	public LoginCommand login(LoginCommand loginCommand) {
-		System.out.println("service작동");
 		return memberDAO.login(loginCommand);
 		
 	}

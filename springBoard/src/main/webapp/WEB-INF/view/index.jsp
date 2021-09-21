@@ -13,7 +13,7 @@
 <body>
 	<div class="header shadow">
 		<div class="header2">
-			<h3 style="float: left"><a href="index" style="color: white">Simple board</a></h3>
+			<h3 style="float: left"><a href="${pageContext.request.contextPath}/index" style="color: white">Simple board</a></h3>
 			<c:if test="${empty sessionScope.id }">
 			<button style="float: right" type="button" class="btn btn-outline-light" onclick="location.href='login'">로그인</button>
 			</c:if>
@@ -46,73 +46,22 @@
 					
 				</div>
 				<div class="list shadow-sm">
-				
-					<a href="#">
-					<div class="list-card ">
-							<div class="card">
-								  <div class="card-header">
-								    김태민<div style="float: right">조회수 31</div>
-								  </div>
-								  <div class="card-body list-group-item list-group-item-action">
-								    <h5 class="card-title">게시글 제목이 들어오는 곳</h5>
-								    <p class="card-text ul-title">작성일: 2021-08-13 </p>
-								  </div>
-							</div>
-					</div>
-					</a>
 					
-					<a href="#">
-					<div class="list-card">
-						<div class="card">
-							  <div class="card-header">
-							    김태민<div style="float: right">조회수 313</div>
-							  </div>
-							  <div class="card-body list-group-item list-group-item-action">
-							    <h5 class="card-title">제목 뭐로하지?</h5>
-							    <p class="card-text ul-title">작성일: 2021-08-13 </p>
-							  </div>
+					<c:forEach var="board" items="${boardList }" varStatus="loop">
+						<a href="<c:url value="/read/${board.num }"/>">
+						<div class="list-card ">
+								<div class="card">
+									  <div class="card-header">
+									   ${board.writer }<div style="float: right">조회수 ${board.views }</div>
+									  </div>
+									  <div class="card-body list-group-item list-group-item-action">
+									    <h5 class="card-title">${board.title }</h5>
+									    <p class="card-text ul-title">${board.category } | 작성일: ${board.regdate } </p>
+									  </div>
+								</div>
 						</div>
-					</div>
 					</a>
-					<a href="#">
-					<div class="list-card">
-						<div class="card">
-							  <div class="card-header">
-							    김태민<div style="float: right">조회수 12</div>
-							  </div>
-							  <div class="card-body list-group-item list-group-item-action">
-							    <h5 class="card-title">게시글 제목</h5>
-							    <p class="card-text ul-title">작성일: 2021-08-13 </p>
-							  </div>
-						</div>
-					</div>
-					</a>
-					<a href="#">
-					<div class="list-card">
-						<div class="card">
-							  <div class="card-header">
-							    김태민<div style="float: right">조회수 22</div>
-							  </div>
-							  <div class="card-body list-group-item list-group-item-action">
-							    <h5 class="card-title">게시판 만들기!</h5>
-							    <p class="card-text ul-title">작성일: 2021-08-13 </p>
-							  </div>
-						</div>
-					</div>
-					</a>
-					<a href="#">
-					<div class="list-card">
-						<div class="card">
-							  <div class="card-header">
-							    김태민<div style="float: right">조회수 54</div>
-							  </div>
-							  <div class="card-body list-group-item list-group-item-action">
-							    <h5 class="card-title">제목</h5>
-							    <p class="card-text ul-title">작성일: 2021-08-13 </p>
-							  </div>
-						</div>
-					</div>
-					</a>
+					</c:forEach>
 					
 					<nav aria-label="Page navigation example">
 					  <ul class="pagination mt-3" >

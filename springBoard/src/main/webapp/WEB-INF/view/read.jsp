@@ -13,7 +13,7 @@
 <body>
 	<div class="header shadow">
 		<div class="header2">
-			<h3 style="float: left"><a href="index" style="color: white">Simple board</a></h3>
+			<h3 style="float: left"><a href="/index" style="color: white">Simple board</a></h3>
 			<c:if test="${empty sessionScope.id }">
 			<button style="float: right" type="button" class="btn btn-outline-light" onclick="location.href='login'">로그인</button>
 			</c:if>
@@ -30,23 +30,18 @@
 			<div class="contentL">
 				<div class="content-read shadow-sm">
 					<div class="content-header">
-						<h3 >제목이 들어올 곳</h3>
-						<h6 class="ul-title">2021-09-13 &nbsp;|&nbsp;  svs1014  &nbsp;|&nbsp;  조회 31</h6>
+						<h3 >${boardVO.title }</h3>
+						<h6 class="ul-title">${boardVO.regdate } &nbsp;|&nbsp;  ${boardVO.writer }  &nbsp;|&nbsp;  조회 ${boardVO.views}</h6>
 					</div>
 					
 					<div class="content-mid">
-						내용!
+						${boardVO.content }
 					</div>
 					<div class="content-bottom">
 						<button type="button" class="btn btn-info" onclick="location.href='index'" >목록</button>
 					</div>
 				</div>
-				
-					  
-					
 			</div>
-				
-			
 		
 			<div class="profile shadow-sm">
 				 <c:if test="${empty sessionScope.id }">
