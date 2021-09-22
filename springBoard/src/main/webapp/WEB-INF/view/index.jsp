@@ -105,18 +105,18 @@
 				</c:if>
 				 <div class="profile-mid">
 				 	<h6 class="ul-title">홈</h6>
-				 	<h5>전체</h5>
+				 	<h5><a style="color: black" href="${pageContext.request.contextPath}/index">전체</a></h5>
 				 </div>
 				 <div class="profile-mid">
 				 	<h6 class="ul-title">정보</h6>
-				 	<h5>공지사항</h5>
-				 	<h5>긴급 뉴스</h5>
+				 	<h5><a style="color: black" href="${pageContext.request.contextPath}/notice">공지사항</a></h5>
+				 	<h5><a style="color: black" href="${pageContext.request.contextPath}/news">긴급 뉴스</a></h5>
 				 </div>
 				 <div class="profile-bottom">
 				 	<h6 class="ul-title">커뮤니티</h6>
-				 	<h5>자유</h5>
-				 	<h5>유머</h5>
-				 	<h5>팬아트</h5>
+				 	<h5><a style="color: black" href="${pageContext.request.contextPath}/notice">자유</a></h5>
+				 	<h5><a style="color: black" href="${pageContext.request.contextPath}/notice">유머</a></h5>
+				 	<h5 style="text-decoration: line-through;">팬아트</h5>
 				 </div>
 			</div>
 			

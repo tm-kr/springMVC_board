@@ -58,5 +58,15 @@ public class BoardController {
 		return "redirect:/index";
 	}
 	
+	@RequestMapping(value="/news")
+	public String news() {
+		return "/news";
+	}
+	
+	@RequestMapping(value="/notice")
+	public String notice() {
+		return "/notice";
+	}
+	
 	
 }
