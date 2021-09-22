@@ -13,7 +13,7 @@
 <body>
 	<div class="header shadow">
 		<div class="header2">
-			<h3 style="float: left"><a href="${pageContext.request.contextPath}/index" style="color: white">Simple board</a></h3>
+			<h3 style="float: left"><a href="${pageContext.request.contextPath}/index/1" style="color: white">Simple board</a></h3>
 			<c:if test="${empty sessionScope.id }">
 			<button style="float: right" type="button" class="btn btn-outline-light" onclick="location.href='${pageContext.request.contextPath}/login'">로그인</button>
 			</c:if>
@@ -38,7 +38,7 @@
 						${boardVO.content }
 					</div>
 					<div class="content-bottom">
-						<button type="button" class="btn btn-info" onclick="location.href='${pageContext.request.contextPath}/index'" >목록</button>
+						<button type="button" class="btn btn-info" onclick="location.href='${pageContext.request.contextPath}/index/1'" >목록</button>
 					</div>
 				</div>
 			</div>
@@ -60,7 +60,7 @@
 				</c:if>
 				 <div class="profile-mid">
 				 	<h6 class="ul-title">홈</h6>
-				 	<h5><a style="color: black" href="${pageContext.request.contextPath}/index">전체</a></h5>
+				 	<h5><a style="color: black" href="${pageContext.request.contextPath}/index/1">전체</a></h5>
 				 </div>
 				 <div class="profile-mid">
 				 	<h6 class="ul-title">정보</h6>

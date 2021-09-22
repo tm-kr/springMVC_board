@@ -16,58 +16,56 @@ public class BoardService {
 	public BoardDAO getBoardDAO() {
 		return boardDAO;
 	}
-
+	
 	public void setBoardDAO(BoardDAO boardDAO) {
 		this.boardDAO = boardDAO;
 	}
-
-	public void write(BoardVO boardVO) {
-		boardDAO.write(boardVO);
-	}
-	
-	public List<BoardVO> list() {
-		return boardDAO.list();
-	}
-	public List<BoardVO> listPage(PageVO pageVO){
-		return boardDAO.listPage(pageVO);
-	}
-	
-	public BoardVO read(int num) {
-		return boardDAO.read(num);
-	}
-	
+	// 전체 글 갯수 조회
 	public int articleCount() {
 		return boardDAO.articleCount();
 	}
-	
-	public void views(int num) {
-		boardDAO.views(num);
+	// 전체 글 최신순 정렬
+	public List<BoardVO> listPage(PageVO pageVO){
+		return boardDAO.listPage(pageVO);
 	}
-
+	// 전체 글 조회순 정렬
 	public List<BoardVO> popularList(PageVO pageVO) {
 		return boardDAO.popularList(pageVO);
 	}
-	
+	// 자유 게시판 글 갯수 조회
 	public int freeArticleCount() {
 		return boardDAO.freeArticleCount();
 	}
-	
+	// 자유 게시판 최신순 정렬
 	public List<BoardVO> freeList(PageVO pageVO) {
 		return boardDAO.freeList(pageVO);
 	}
-	
+	// 자유 게시판 조회순 정렬
 	public List<BoardVO> freePopularList(PageVO pageVO) {
 		return boardDAO.freePopularList(pageVO);
 	}
-	
+	// 유머 게시판 글 갯수 조회
 	public int humorArticleCount() {
 		return boardDAO.humorArticleCount();
 	}
+	// 유머 게시판 최신순 정렬
 	public List<BoardVO> humorList(PageVO pageVO) {
 		return boardDAO.humorList(pageVO);
 	}
-	
+	// 유머 게시판 조회순 정렬
 	public List<BoardVO> humorPopularList(PageVO pageVO) {
 		return boardDAO.humorPopularList(pageVO);
+	}
+	// 게시글 작성 
+	public void write(BoardVO boardVO) {
+		boardDAO.write(boardVO);
+	}
+	// 클릭한 게시물 정보 불러오기
+	public BoardVO read(int num) {
+		return boardDAO.read(num);
+	}
+	// 조회수 + 1
+	public void views(int num) {
+		boardDAO.views(num);
 	}
 }

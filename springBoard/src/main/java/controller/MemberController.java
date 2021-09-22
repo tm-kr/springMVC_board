@@ -40,7 +40,7 @@ public class MemberController {
 		try {
 			if(loginCommand.getPassword().equals(lm.getPassword())) {
 				session.setAttribute("id", lm.getId());
-				return "redirect:/index";
+				return "redirect:/index/1";
 			}
 		}catch (NullPointerException e) {
 			e.printStackTrace();
@@ -51,7 +51,7 @@ public class MemberController {
 	@RequestMapping(value="/logout", method=RequestMethod.GET)
 	public String logout(HttpSession session) {
 		session.invalidate();
-		return "redirect:/index";
+		return "redirect:/index/1";
 	}
 	
 

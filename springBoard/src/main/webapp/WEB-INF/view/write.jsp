@@ -14,7 +14,7 @@
 <body>
 	<div class="header shadow">
 		<div class="header2">
-			<h3 style="float: left"><a href="${pageContext.request.contextPath}/index" style="color: white">Simple board</a></h3>
+			<h3 style="float: left"><a href="${pageContext.request.contextPath}/index/1" style="color: white">Simple board</a></h3>
 			<c:if test="${empty sessionScope.id }">
 			<button style="float: right" type="button" class="btn btn-outline-light" onclick="location.href='${pageContext.request.contextPath}/login'">로그인</button>
 			</c:if>
@@ -42,7 +42,7 @@
 							<textarea class="form-control" placeholder="파일 설명  (1000자 이내)" name="content"></textarea>
 							<div class="btn1 mt-3">
 								<button type="submit" class="btn btn-outline-secondary" >작성하기</button>	
-								<button type="button" class="btn btn-outline-secondary" onclick="location.href='${pageContext.request.contextPath}/index'" >취소</button>	
+								<button type="button" class="btn btn-outline-secondary" onclick="location.href='${pageContext.request.contextPath}/index/1'" >취소</button>	
 							</div>
 						</div>
 						<input type="hidden" name="writer" value="${id}">
@@ -71,7 +71,7 @@
 				</c:if>
 				<div class="profile-mid">
 				 	<h6 class="ul-title">홈</h6>
-				 	<h5><a style="color: black" href="${pageContext.request.contextPath}/index">전체</a></h5>
+				 	<h5><a style="color: black" href="${pageContext.request.contextPath}/index/1">전체</a></h5>
 				 </div>
 				 <div class="profile-mid">
 				 	<h6 class="ul-title">정보</h6>

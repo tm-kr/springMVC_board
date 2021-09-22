@@ -4,16 +4,15 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class PageVO {
-	private int startPage;
-	private int endPage;
-	private int countPage;
-	private int currentPage;
-	private int first;
+	private int startPage; // 시작페이지
+	private int endPage; // 끝 페이지
+	private int countPage; // 페이지 갯수 ex ) [1] [2] [3] 다음
+	private int currentPage; // 현재 페이지
+	private int first; //fist 부터 second 까지의 게시물을 보여준다
 	private int second;
-	private int block;
+	private int block; // 게시글 목록 갯수 위의 페이지 갯수의 끝 번호 일 것이다.
 	
 	public PageVO() {
-		// TODO Auto-generated constructor stub
 	}
 	public PageVO(int startPage, int endPage, int countPage, int currentPage, int first, int second, int block) {
 		super();

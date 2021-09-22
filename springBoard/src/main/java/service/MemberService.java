@@ -18,11 +18,11 @@ public class MemberService {
 	public void setMemberDAO(MemberDAO memberDAO) {
 		this.memberDAO = memberDAO;
 	}
-	
+	// 회원가입
 	public void join(MemberVO memberVO) {
 		memberDAO.join(memberVO);
 	}
-	
+	// 로그인
 	public LoginCommand login(LoginCommand loginCommand) {
 		return memberDAO.login(loginCommand);
 		
