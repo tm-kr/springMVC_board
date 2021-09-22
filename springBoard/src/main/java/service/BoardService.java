@@ -39,5 +39,9 @@ public class BoardService {
 	public int articleCount() {
 		return boardDAO.articleCount();
 	}
+	
+	public void views(int num) {
+		boardDAO.views(num);
+	}
 
 }

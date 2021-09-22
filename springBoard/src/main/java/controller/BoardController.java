@@ -42,6 +42,7 @@ public class BoardController {
 	
 	@RequestMapping(value="/read/{num}")
 	public String read(Model model, @PathVariable int num) {
+		boardService.views(num);
 		model.addAttribute("boardVO", boardService.read(num));
 		return "/read";
 	}

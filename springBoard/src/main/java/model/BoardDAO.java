@@ -39,4 +39,8 @@ public class BoardDAO {
 		return sqlSessionTemplate.selectOne("articleCount");
 	}
 	
+	public void views(int num) {
+		sqlSessionTemplate.selectOne("views",num);
+	}
+	
 }

@@ -21,7 +21,7 @@
 		where rnum >= #{first} and rnum <= #{second}
 		 ]]>
 	</select>
-	
+	<!-- 전체 글 갯수 가져오기 -->
 	<select id="articleCount" resultType="int">
 		select count(*) from BOARD
 	</select>
@@ -39,5 +39,10 @@
 		values
 		(BOARD_SEQ.nextval, #{category}, #{title}, #{writer}, SYSDATE, 0, #{content})
 	</insert>
+	
+	<!-- 조회수 올라가기 -->
+	<update id="views" parameterType="int">
+		UPDATE BOARD SET views = views + 1 WHERE num = #{num}
+	</update>
 	
 </mapper>
