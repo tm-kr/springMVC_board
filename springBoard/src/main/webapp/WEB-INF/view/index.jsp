@@ -11,6 +11,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 	<div class="header shadow">
 		<div class="header2">
 			<h3 style="float: left"><a href="${pageContext.request.contextPath}/index" style="color: white">Simple board</a></h3>
@@ -21,8 +22,8 @@
 				<button style="float: right" type="button" class="btn btn-outline-light" onclick="location.href='${pageContext.request.contextPath}/logout'">로그아웃</button>
 			</c:if>
 		</div>
-		
 	</div>
+	
 	
 	<div class="container">
 		<div class="content ">
@@ -31,7 +32,7 @@
 					<div class="search-top">
 						<h2 style="float: left">전체</h2>
 						<c:if test="${not empty sessionScope.id }">
-						<div style="float: right"><a href="write"><img alt="" src="${pageContext.request.contextPath}/resources/img/write.jpg"></a></div>
+						<div style="float: right"><a href="${pageContext.request.contextPath}/write"><img alt="" src="${pageContext.request.contextPath}/resources/img/write.jpg"></a></div>
 						</c:if>
 					</div>
 					<br><br>

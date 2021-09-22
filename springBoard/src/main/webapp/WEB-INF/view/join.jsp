@@ -14,7 +14,7 @@
 <body>
 	<div class="header shadow">
 		<div class="header2">
-			<h3 style="float: left"><a href="index" style="color: white">Simple board</a></h3>
+			<h3 style="float: left"><a href="${pageContext.request.contextPath}/index" style="color: white">Simple board</a></h3>
 			<c:if test="${empty sessionScope.id }">
 			<button style="float: right" type="button" class="btn btn-outline-light" onclick="location.href='${pageContext.request.contextPath}/login'">로그인</button>
 			</c:if>
