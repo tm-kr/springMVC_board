@@ -37,7 +37,8 @@
 					</div>
 					<br><br>
 					<div>
-						<div class="search-cate" style="float: left">최신순  인기순</div>  
+						<div class="search-cate" style="float: left"><a style ="color: #98a0a7" href="${pageContext.request.contextPath}/index">최신순</a>  
+																	<a style ="color: #98a0a7" href="${pageContext.request.contextPath}/popular/1">조회순</a></div>  
 						<form class="d-flex" style="float: right">
 					      <input class="form-control me-2" type="search" placeholder="검색할 내용" aria-label="Search">
 					      <button class="btn btn-secondary" type="submit">search</button>
@@ -67,7 +68,7 @@
 					<nav aria-label="Page navigation example">
 					  <ul class="pagination mt-3" >
 					    <li class="page-item">
-					      <a class="page-link" href="${pageContext.request.contextPath}/index/${page.endPage - page.countPage}" aria-label="Previous">
+					      <a class="page-link" href="${pageContext.request.contextPath}/index/${page.startPage + 2 - page.countPage}" aria-label="Previous">
 					        <span aria-hidden="true">&laquo;</span>
 					      </a>
 					    </li>
@@ -76,11 +77,13 @@
 					    	<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/index/${i}">${i}</a></li>
 					    </c:forEach>
 					    
+					    <c:if test="${page.block > page.endPage}">
 					    <li class="page-item">
 					      <a class="page-link" href="${pageContext.request.contextPath}/index/${page.startPage + page.countPage}" aria-label="Next">
 					        <span aria-hidden="true">&raquo;</span>
 					      </a>
 					    </li>
+					    </c:if>
 					  </ul>
 					</nav>
 					
@@ -116,7 +119,7 @@
 				 	<h6 class="ul-title">커뮤니티</h6>
 				 	<h5><a style="color: black" href="${pageContext.request.contextPath}/notice">자유</a></h5>
 				 	<h5><a style="color: black" href="${pageContext.request.contextPath}/notice">유머</a></h5>
-				 	<h5 style="text-decoration: line-through;">팬아트</h5>
+				 	<h5 style="text-decoration: line-through;">팬 아트</h5>
 				 </div>
 			</div>
 			

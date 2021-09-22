@@ -10,12 +10,12 @@ public class PageVO {
 	private int currentPage;
 	private int first;
 	private int second;
+	private int block;
 	
 	public PageVO() {
 		// TODO Auto-generated constructor stub
 	}
-
-	public PageVO(int startPage, int endPage, int countPage, int currentPage, int first, int second) {
+	public PageVO(int startPage, int endPage, int countPage, int currentPage, int first, int second, int block) {
 		super();
 		this.startPage = startPage;
 		this.endPage = endPage;
@@ -23,8 +23,9 @@ public class PageVO {
 		this.currentPage = currentPage;
 		this.first = first;
 		this.second = second;
+		this.block = block;
 	}
-
+	
 	public int getStartPage() {
 		return startPage;
 	}
@@ -60,6 +61,14 @@ public class PageVO {
 	}
 	public void setSecond(int second) {
 		this.second = second;
+	}
+
+	public int getBlock() {
+		return block;
+	}
+
+	public void setBlock(int block) {
+		this.block = block;
 	}	
 	
 	

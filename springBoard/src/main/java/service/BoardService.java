@@ -44,4 +44,8 @@ public class BoardService {
 		boardDAO.views(num);
 	}
 
+	public List<BoardVO> popularListPage(PageVO pageVO) {
+		return boardDAO.popularListPage(pageVO);
+	}
+
 }

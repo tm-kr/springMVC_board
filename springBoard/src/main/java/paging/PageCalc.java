@@ -45,6 +45,7 @@ public class PageCalc {
 		pageVO.setCurrentPage(currentPage);
 		pageVO.setFirst(first);
 		pageVO.setSecond(second);
+		pageVO.setBlock(block);
 		
 		return pageVO;
 	}

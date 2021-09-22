@@ -39,6 +39,13 @@ public class BoardController {
 		model.addAttribute("boardList", boardService.listPage(pageCalc.pageCalc(currentPage, articleCount)));
 		return "/index";
 	}
+	@RequestMapping(value="/popular/{currentPage}")
+	public String popularListPage(Model model, @PathVariable int currentPage) {
+		int articleCount = boardService.articleCount();
+		model.addAttribute("page",pageCalc.pageCalc(currentPage, articleCount));
+		model.addAttribute("boardList", boardService.popularListPage(pageCalc.pageCalc(currentPage, articleCount)));
+		return "/sort/popular";
+	}
 	
 	@RequestMapping(value="/read/{num}")
 	public String read(Model model, @PathVariable int num) {
@@ -67,6 +74,5 @@ public class BoardController {
 	public String notice() {
 		return "/notice";
 	}
-	
 	
 }

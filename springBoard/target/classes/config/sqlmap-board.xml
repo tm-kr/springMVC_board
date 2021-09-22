@@ -21,6 +21,15 @@
 		where rnum >= #{first} and rnum <= #{second}
 		 ]]>
 	</select>
+	
+	<select id="popularListPage" parameterType="pageVO" resultType="boardVO">
+		 <![CDATA[
+		  select * from (select rownum rnum, board.* from
+		(select * from board order by views desc) board)
+		where rnum >= #{first} and rnum <= #{second}
+		 ]]>
+	</select>
+	
 	<!-- 전체 글 갯수 가져오기 -->
 	<select id="articleCount" resultType="int">
 		select count(*) from BOARD
