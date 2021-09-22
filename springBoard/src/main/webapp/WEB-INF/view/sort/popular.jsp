@@ -117,8 +117,8 @@
 				 </div>
 				 <div class="profile-bottom">
 				 	<h6 class="ul-title">커뮤니티</h6>
-				 	<h5><a style="color: black" href="${pageContext.request.contextPath}/notice">자유</a></h5>
-				 	<h5><a style="color: black" href="${pageContext.request.contextPath}/notice">유머</a></h5>
+				 	<h5><a style="color: black" href="${pageContext.request.contextPath}/free/1">자유</a></h5>
+				 	<h5><a style="color: black" href="${pageContext.request.contextPath}/humor/1">유머</a></h5>
 				 	<h5 style="text-decoration: line-through;">팬 아트</h5>
 				 </div>
 			</div>

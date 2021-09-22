@@ -22,7 +22,7 @@
 		 ]]>
 	</select>
 	
-	<select id="popularListPage" parameterType="pageVO" resultType="boardVO">
+	<select id="popularList" parameterType="pageVO" resultType="boardVO">
 		 <![CDATA[
 		  select * from (select rownum rnum, board.* from
 		(select * from board order by views desc) board)
@@ -33,6 +33,46 @@
 	<!-- 전체 글 갯수 가져오기 -->
 	<select id="articleCount" resultType="int">
 		select count(*) from BOARD
+	</select>
+	
+	<select id="freeArticleCount" resultType="int">
+		select count(*) from BOARD WHERE category = '자유'
+	</select>
+	
+	<select id="humorArticleCount" resultType="int">
+		select count(*) from BOARD WHERE category = '유머'
+	</select>
+	
+	<select id="freeList" parameterType="pageVO" resultType="boardVO">
+		 <![CDATA[
+		  select * from (select rownum rnum, board.* from
+		(select * from board where category='자유' order by NUM desc) board)
+		where rnum >= #{first} and rnum <= #{second}
+		 ]]>
+	</select>
+	
+	<select id="freePopularList" parameterType="pageVO" resultType="boardVO">
+		 <![CDATA[
+		  select * from (select rownum rnum, board.* from
+		(select * from board where category='자유' order by views desc) board)
+		where rnum >= #{first} and rnum <= #{second}
+		 ]]>
+	</select>
+	
+	<select id="humorList" parameterType="pageVO" resultType="boardVO">
+		 <![CDATA[
+		  select * from (select rownum rnum, board.* from
+		(select * from board where category='유머' order by NUM desc) board)
+		where rnum >= #{first} and rnum <= #{second}
+		 ]]>
+	</select>
+	
+	<select id="humorPopularList" parameterType="pageVO" resultType="boardVO">
+		 <![CDATA[
+		  select * from (select rownum rnum, board.* from
+		(select * from board where category='유머' order by views desc) board)
+		where rnum >= #{first} and rnum <= #{second}
+		 ]]>
 	</select>
 	
 	<!-- 게시물 보기 -->

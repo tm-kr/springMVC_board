@@ -44,8 +44,30 @@ public class BoardService {
 		boardDAO.views(num);
 	}
 
-	public List<BoardVO> popularListPage(PageVO pageVO) {
-		return boardDAO.popularListPage(pageVO);
+	public List<BoardVO> popularList(PageVO pageVO) {
+		return boardDAO.popularList(pageVO);
 	}
-
+	
+	public int freeArticleCount() {
+		return boardDAO.freeArticleCount();
+	}
+	
+	public List<BoardVO> freeList(PageVO pageVO) {
+		return boardDAO.freeList(pageVO);
+	}
+	
+	public List<BoardVO> freePopularList(PageVO pageVO) {
+		return boardDAO.freePopularList(pageVO);
+	}
+	
+	public int humorArticleCount() {
+		return boardDAO.humorArticleCount();
+	}
+	public List<BoardVO> humorList(PageVO pageVO) {
+		return boardDAO.humorList(pageVO);
+	}
+	
+	public List<BoardVO> humorPopularList(PageVO pageVO) {
+		return boardDAO.humorPopularList(pageVO);
+	}
 }

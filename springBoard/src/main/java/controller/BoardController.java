@@ -43,8 +43,40 @@ public class BoardController {
 	public String popularListPage(Model model, @PathVariable int currentPage) {
 		int articleCount = boardService.articleCount();
 		model.addAttribute("page",pageCalc.pageCalc(currentPage, articleCount));
-		model.addAttribute("boardList", boardService.popularListPage(pageCalc.pageCalc(currentPage, articleCount)));
+		model.addAttribute("boardList", boardService.popularList(pageCalc.pageCalc(currentPage, articleCount)));
 		return "/sort/popular";
+	}
+	
+	@RequestMapping(value="/free/{currentPage}")
+	public String freeList(Model model, @PathVariable int currentPage) {
+		int articleCount = boardService.freeArticleCount();
+		model.addAttribute("page",pageCalc.pageCalc(currentPage, articleCount));
+		model.addAttribute("boardList", boardService.freeList(pageCalc.pageCalc(currentPage, articleCount)));
+		return "/freeList";
+	}
+	
+	@RequestMapping(value="/freePopular/{currentPage}")
+	public String freePopularList(Model model, @PathVariable int currentPage) {
+		int articleCount = boardService.freeArticleCount();
+		model.addAttribute("page",pageCalc.pageCalc(currentPage, articleCount));
+		model.addAttribute("boardList", boardService.freePopularList(pageCalc.pageCalc(currentPage, articleCount)));
+		return "sort/freePopular";
+	}
+	
+	@RequestMapping(value="/humor/{currentPage}")
+	public String humorList(Model model, @PathVariable int currentPage) {
+		int articleCount = boardService.humorArticleCount();
+		model.addAttribute("page",pageCalc.pageCalc(currentPage, articleCount));
+		model.addAttribute("boardList", boardService.humorList(pageCalc.pageCalc(currentPage, articleCount)));
+		return "/humorList";
+	}
+	
+	@RequestMapping(value="/humorPopular/{currentPage}")
+	public String humorPopularList(Model model, @PathVariable int currentPage) {
+		int articleCount = boardService.humorArticleCount();
+		model.addAttribute("page",pageCalc.pageCalc(currentPage, articleCount));
+		model.addAttribute("boardList", boardService.humorPopularList(pageCalc.pageCalc(currentPage, articleCount)));
+		return "sort/humorPopular";
 	}
 	
 	@RequestMapping(value="/read/{num}")

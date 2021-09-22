@@ -11,6 +11,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 	<div class="header shadow">
 		<div class="header2">
 			<h3 style="float: left"><a href="${pageContext.request.contextPath}/index" style="color: white">Simple board</a></h3>
@@ -21,30 +22,77 @@
 				<button style="float: right" type="button" class="btn btn-outline-light" onclick="location.href='${pageContext.request.contextPath}/logout'">로그아웃</button>
 			</c:if>
 		</div>
-		
 	</div>
 	
+	
 	<div class="container">
-		<div class="content2">
-		
+		<div class="content ">
 			<div class="contentL">
-				<div class="content-read shadow-sm">
-					<div class="content-header">
-						<h3 >${boardVO.title }</h3>
-						<h6 class="ul-title">${boardVO.regdate } &nbsp;|&nbsp;  ${boardVO.writer }  &nbsp;|&nbsp;  조회 ${boardVO.views}</h6>
+				<div class="search shadow-sm">
+					<div class="search-top">
+						<h2 style="float: left">유머</h2>
+						<c:if test="${not empty sessionScope.id }">
+						<div style="float: right"><a href="${pageContext.request.contextPath}/write"><img alt="" src="${pageContext.request.contextPath}/resources/img/write.jpg"></a></div>
+						</c:if>
 					</div>
+					<br><br>
+					<div>
+						<div class="search-cate" style="float: left"><a style ="color: #98a0a7" href="${pageContext.request.contextPath}/free/1">최신순</a>  
+																	<a style ="color: #98a0a7" href="${pageContext.request.contextPath}/freePopular/1">조회순</a></div>  
+						<form class="d-flex" style="float: right">
+					      <input class="form-control me-2" type="search" placeholder="검색할 내용" aria-label="Search">
+					      <button class="btn btn-secondary" type="submit">search</button>
+						</form>
+					</div>
+					  
 					
-					<div class="content-mid">
-						${boardVO.content }
-					</div>
-					<div class="content-bottom">
-						<button type="button" class="btn btn-info" onclick="location.href='${pageContext.request.contextPath}/index'" >목록</button>
-					</div>
 				</div>
+				<div class="list shadow-sm">
+					
+					<c:forEach var="board" items="${boardList }" varStatus="loop">
+						<a href="<c:url value="/read/${board.num }"/>">
+						<div class="list-card ">
+								<div class="card">
+									  <div class="card-header">
+									   ${board.writer }<div style="float: right">조회수 ${board.views }</div>
+									  </div>
+									  <div class="card-body list-group-item list-group-item-action">
+									    <h5 class="card-title">${board.title }</h5>
+									    <p class="card-text ul-title">${board.category } | 작성일: ${board.regdate } </p>
+									  </div>
+								</div>
+						</div>
+					</a>
+					</c:forEach>
+					
+					<nav aria-label="Page navigation example">
+					  <ul class="pagination mt-3" >
+					    <li class="page-item">
+					      <a class="page-link" href="${pageContext.request.contextPath}/humorPopular/${page.startPage + 2 - page.countPage}" aria-label="Previous">
+					        <span aria-hidden="true">&laquo;</span>
+					      </a>
+					    </li>
+					    
+					    <c:forEach var="i"  begin="${page.startPage }" end="${page.endPage }">
+					    	<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/humorPopular/${i}">${i}</a></li>
+					    </c:forEach>
+					    
+					    <c:if test="${page.block > page.endPage}">
+					    <li class="page-item">
+					      <a class="page-link" href="${pageContext.request.contextPath}/humorPopular/${page.startPage + page.countPage}" aria-label="Next">
+					        <span aria-hidden="true">&raquo;</span>
+					      </a>
+					    </li>
+					    </c:if>
+					  </ul>
+					</nav>
+					
+				</div>	
 			</div>
+			
 		
 			<div class="profile shadow-sm">
-				 <c:if test="${empty sessionScope.id }">
+				<c:if test="${empty sessionScope.id }">
 					 <div class="d-grid gap-2 profile-top">
 						   <button class="btn btn-info" type="button" onclick="location.href='${pageContext.request.contextPath}/login'">로그인</button>
 						   <button class="btn btn-info" type="button" onclick="location.href='${pageContext.request.contextPath}/join'">회원가입</button>

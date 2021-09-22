@@ -43,8 +43,32 @@ public class BoardDAO {
 		sqlSessionTemplate.selectOne("views",num);
 	}
 
-	public List<BoardVO> popularListPage(PageVO pageVO) {
-		return sqlSessionTemplate.selectList("popularListPage", pageVO);
+	public List<BoardVO> popularList(PageVO pageVO) {
+		return sqlSessionTemplate.selectList("popularList", pageVO);
+	}
+	
+	public int freeArticleCount() {
+		return sqlSessionTemplate.selectOne("freeArticleCount");
+	}
+	
+	public List<BoardVO> freeList(PageVO pageVO){
+		return sqlSessionTemplate.selectList("freeList", pageVO);
+	}
+	
+	public List<BoardVO> freePopularList(PageVO pageVO) {
+		return sqlSessionTemplate.selectList("freePopularList", pageVO);
+	}
+	
+	public int humorArticleCount() {
+		return sqlSessionTemplate.selectOne("humorArticleCount");
+	}
+	
+	public List<BoardVO> humorList(PageVO pageVO){
+		return sqlSessionTemplate.selectList("humorList", pageVO);
+	}
+	
+	public List<BoardVO> humorPopularList(PageVO pageVO) {
+		return sqlSessionTemplate.selectList("humorPopularList", pageVO);
 	}
 	
 }
