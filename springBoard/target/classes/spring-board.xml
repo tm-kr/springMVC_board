@@ -61,6 +61,10 @@
   </bean>
   
   <bean id="pageCalc" class="paging.PageCalc">
+ 	 	<property name="pageVO" ref="pageVO" />
+  </bean>
+  
+  <bean id="pageVO" class="paging.PageVO">
   </bean>
   
 </beans>

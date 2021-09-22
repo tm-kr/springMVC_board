@@ -27,7 +27,7 @@ public class MemberController {
 	@RequestMapping(value="/join", method=RequestMethod.POST)
 	public String join(MemberVO memberVO) {
 		memberService.join(memberVO);
-		return "/login";
+		return "redirect:/login";
 	}
 	
 	@RequestMapping(value="/login", method=RequestMethod.GET)

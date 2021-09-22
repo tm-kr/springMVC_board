@@ -26,14 +26,17 @@ public class BoardController {
 
 	@RequestMapping(value="/index")
 	public String list(Model model) {
+		int articleCount = boardService.articleCount();
+		model.addAttribute("page",pageCalc.pageCalc(1, articleCount));
 		model.addAttribute("boardList", boardService.list());
 		return "/index";
 	}
 	
 	@RequestMapping(value="/index/{currentPage}")
 	public String listPage(Model model, @PathVariable int currentPage) {
-		pageCalc.pageCalc(currentPage, 0);
-		model.addAttribute("boardList", boardService.list());
+		int articleCount = boardService.articleCount();
+		model.addAttribute("page",pageCalc.pageCalc(currentPage, articleCount));
+		model.addAttribute("boardList", boardService.listPage(pageCalc.pageCalc(currentPage, articleCount)));
 		return "/index";
 	}
 	

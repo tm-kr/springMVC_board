@@ -15,10 +15,10 @@
 		<div class="header2">
 			<h3 style="float: left"><a href="${pageContext.request.contextPath}/index" style="color: white">Simple board</a></h3>
 			<c:if test="${empty sessionScope.id }">
-			<button style="float: right" type="button" class="btn btn-outline-light" onclick="location.href='login'">로그인</button>
+			<button style="float: right" type="button" class="btn btn-outline-light" onclick="location.href='${pageContext.request.contextPath}/login'">로그인</button>
 			</c:if>
 			<c:if test="${not empty sessionScope.id }">
-				<button style="float: right" type="button" class="btn btn-outline-light" onclick="location.href='logout'">로그아웃</button>
+				<button style="float: right" type="button" class="btn btn-outline-light" onclick="location.href='${pageContext.request.contextPath}/logout'">로그아웃</button>
 			</c:if>
 		</div>
 		
@@ -66,15 +66,17 @@
 					<nav aria-label="Page navigation example">
 					  <ul class="pagination mt-3" >
 					    <li class="page-item">
-					      <a class="page-link" href="#" aria-label="Previous">
+					      <a class="page-link" href="${pageContext.request.contextPath}/index/${page.endPage - page.countPage}" aria-label="Previous">
 					        <span aria-hidden="true">&laquo;</span>
 					      </a>
 					    </li>
-					    <li class="page-item"><a class="page-link" href="#">1</a></li>
-					    <li class="page-item"><a class="page-link" href="#">2</a></li>
-					    <li class="page-item"><a class="page-link" href="#">3</a></li>
+					    
+					    <c:forEach var="i"  begin="${page.startPage }" end="${page.endPage }">
+					    	<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/index/${i}">${i}</a></li>
+					    </c:forEach>
+					    
 					    <li class="page-item">
-					      <a class="page-link" href="#" aria-label="Next">
+					      <a class="page-link" href="${pageContext.request.contextPath}/index/${page.startPage + page.countPage}" aria-label="Next">
 					        <span aria-hidden="true">&raquo;</span>
 					      </a>
 					    </li>
@@ -88,16 +90,16 @@
 			<div class="profile shadow-sm">
 				<c:if test="${empty sessionScope.id }">
 					 <div class="d-grid gap-2 profile-top">
-						   <button class="btn btn-info" type="button" onclick="location.href='login'">로그인</button>
-						   <button class="btn btn-info" type="button" onclick="location.href='join'">회원가입</button>
+						   <button class="btn btn-info" type="button" onclick="location.href='${pageContext.request.contextPath}/login'">로그인</button>
+						   <button class="btn btn-info" type="button" onclick="location.href='${pageContext.request.contextPath}/join'">회원가입</button>
 					 </div>
 				 </c:if>
 				 <c:if test="${not empty sessionScope.id }">
 				 	<div class="profile-top">
 				 		<h6 class="ul-title id-title">${id}님 환영합니다!</h6>
-				 		<button class="btn btn-info" type="button" onclick="location.href='write'">글쓰기</button>
-				 		<button class="btn btn-outline-info" type="button" onclick="location.href='login'">내가 쓴 글</button>
-				 		<button class="btn btn-outline-info" type="button" onclick="location.href='login'">내정보</button>
+				 		<button class="btn btn-info" type="button" onclick="location.href='${pageContext.request.contextPath}/write'">글쓰기</button>
+				 		<button class="btn btn-outline-info" type="button" onclick="location.href='${pageContext.request.contextPath}/login'">내가 쓴 글</button>
+				 		<button class="btn btn-outline-info" type="button" onclick="location.href='${pageContext.request.contextPath}/login'">내정보</button>
 					</div>
 				</c:if>
 				 <div class="profile-mid">

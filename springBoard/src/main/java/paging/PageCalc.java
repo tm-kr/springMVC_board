@@ -1,10 +1,21 @@
 package paging;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Component;
 
-@Repository
+@Component
 public class PageCalc {
-	public int pageCalc(int currentPage, int articleCount) {
+	
+	private PageVO pageVO;
+	
+	public PageVO getPageVO() {
+		return pageVO;
+	}
+
+	public void setPageVO(PageVO pageVO) {
+		this.pageVO = pageVO;
+	}
+
+	public PageVO pageCalc(int currentPage, int articleCount) {
 		// currentPage = 현재페이지, articleCount = 글 총 갯수
 		int countList = 5;//한 페이지에 보여줄 글 갯수
 		int countPage = 3;// 페이지 갯수 ex ) [1] [2] [3] 다음
@@ -24,9 +35,18 @@ public class PageCalc {
 		if (endPage > block) {
 			endPage = block;
 		}
-		int start = currentPage*5 - 4;
-		int end = currentPage*5;
+		int first = currentPage*countList - 4; //fist 부터 second 까지의 게시물을 보여준다
+		int second = currentPage*countList; //	ex) 1~5 번 게시물 보이기
 		
-		return 0;
+		
+		pageVO.setStartPage(startPage);
+		pageVO.setEndPage(endPage);
+		pageVO.setCountPage(countPage);
+		pageVO.setCurrentPage(currentPage);
+		pageVO.setFirst(first);
+		pageVO.setSecond(second);
+		
+		return pageVO;
 	}
+
 }

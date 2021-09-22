@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import model.BoardDAO;
 import model.BoardVO;
+import paging.PageVO;
 
 @Service
 public class BoardService {
@@ -27,10 +28,16 @@ public class BoardService {
 	public List<BoardVO> list() {
 		return boardDAO.list();
 	}
+	public List<BoardVO> listPage(PageVO pageVO){
+		return boardDAO.listPage(pageVO);
+	}
 	
 	public BoardVO read(int num) {
 		return boardDAO.read(num);
 	}
 	
+	public int articleCount() {
+		return boardDAO.articleCount();
+	}
 
 }

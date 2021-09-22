@@ -18,8 +18,12 @@
 		 <![CDATA[
 		  select * from (select rownum rnum, board.* from
 		(select * from board order by NUM desc) board)
-		where rnum >= #{startPage} and rnum <= #{endPage}
+		where rnum >= #{first} and rnum <= #{second}
 		 ]]>
+	</select>
+	
+	<select id="articleCount" resultType="int">
+		select count(*) from BOARD
 	</select>
 	
 	<!-- 게시물 보기 -->
