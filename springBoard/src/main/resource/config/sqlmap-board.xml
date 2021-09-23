@@ -93,6 +93,10 @@
 		(BOARD_SEQ.nextval, #{category}, #{title}, #{writer}, SYSDATE, 0, #{content})
 	</insert>
 	
+	<!-- 게시물 삭제 -->
+	<delete id="delete" parameterType="int">
+		DELETE FROM BOARD WHERE num = #{num}
+	</delete>
 	<!-- 조회수 올라가기 -->
 	<update id="views" parameterType="int">
 		UPDATE BOARD SET views = views + 1 WHERE num = #{num}

@@ -93,6 +93,12 @@ public class BoardController {
 		return "redirect:/index/1";
 	}
 	
+	@RequestMapping(value="/delete/{num}") // 글 삭제하기
+	public String delete( @PathVariable int num) {
+		boardService.delete(num);
+		return "redirect:/myPost/1";
+	}
+	
 	@RequestMapping(value="/news") // 긴급 뉴스 페이지
 	public String news() {
 		return "/news";
@@ -103,17 +109,15 @@ public class BoardController {
 		return "/notice";
 	}
 	
-	@RequestMapping(value="/myPost/{currentPage}") // 내 게시글 보기
+	@RequestMapping(value="/myPost/{currentPage}") // 내 게시글 리스트
 	public String myPost(Model model, HttpSession session, @PathVariable int currentPage) {
 		String id = (String) session.getAttribute("id");
 		int articleCount = boardService.myPostArticleCount(id);
-		System.out.println(id);
 		PageVO page = pageCalc.pageCalc(currentPage, articleCount);
 		HashMap<String, Object> hm = new HashMap<String, Object>();
 		hm.put("first", page.getFirst());
 		hm.put("second", page.getSecond());
 		hm.put("id", id);
-		System.out.println(hm.toString());
 		model.addAttribute("page", page);
 		model.addAttribute("boardList", boardService.myPostList(hm));
 		return "/myPost";

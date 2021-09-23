@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,27 +28,31 @@
 	<div class="container">
 		<div class="content2">
 		
-			<div class="contentL">
-				<div class="content-read shadow-sm">
-					<div class="content-header">
-						<h3 >${boardVO.title }</h3>
-						<h6 class="ul-title">${boardVO.regdate } &nbsp;|&nbsp;  ${boardVO.writer }  &nbsp;|&nbsp;  조회 ${boardVO.views}</h6>
-						
-						
-					</div>
-					
-					<div class="content-mid">
-						${boardVO.content }
-					</div>
-					<div class="content-bottom">
-						<c:if test="${boardVO.writer == sessionScope.id }">
-								<button type="button" class="btn btn-outline-danger" onclick="delete_Event()">삭제</button>
-								<button type="button" class="btn btn-outline-secondary" onclick="location.href='<c:url value="/edit/${boardVO.num }"/>'">수정</button>
-						</c:if>
-						<button type="button" class="btn btn-outline-info" onclick="location.href='${pageContext.request.contextPath}/index/1'" >목록</button>
-					</div>
+			<div class="contentL shadow-sm">
+				<div>
+					<form:form commandName="boardVO" method="POST">
+						<div class="write">
+							<h3>글쓰기</h3><br>
+							<select class="form-select" aria-label="Default select example" name="category">
+							  <option value="자유"selected>자유 게시판</option>
+							  <option value="유머">유머 게시판</option>
+							</select><br> 
+							<input type="text" class="form-control" placeholder="제목 (10자 이내)" name="title" ><br>
+							<input class="form-control" type="file" id="formFile" name="uploadFile"><br>
+							<textarea class="form-control" placeholder="파일 설명  (1000자 이내)" name="content"></textarea>
+							<div class="btn1 mt-3">
+								<button type="submit" class="btn btn-outline-secondary" >작성하기</button>	
+								<button type="button" class="btn btn-outline-secondary" onclick="location.href='${pageContext.request.contextPath}/index/1'" >취소</button>	
+							</div>
+						</div>
+						<input type="hidden" name="writer" value="${id}">
+					</form:form>
 				</div>
+					  
+					
 			</div>
+				
+			
 		
 			<div class="profile shadow-sm">
 				 <c:if test="${empty sessionScope.id }">
@@ -89,21 +94,6 @@
 		</footer>
 	</div>
 	
-<script>
-	function delete_Event(){
- 
-        if (confirm('정말 삭제하시겠습니까?')) {
-             // 확인 click 글삭제
-        	location.replace("<c:url value="/delete/${boardVO.num }"/>");
-        } else {
-            // 취소 click 글삭제 취소
-        	location.replace("<c:url value="/read/${boardVO.num }"/>");
-		}
-    }
-
-</script>
-
-
 	
 </body>
 </html>

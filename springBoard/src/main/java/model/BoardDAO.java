@@ -67,6 +67,10 @@ public class BoardDAO {
 	public void write(BoardVO boardVO) {
 		sqlSessionTemplate.insert("write", boardVO);
 	}
+	// 글 삭제
+	public void delete(int num) {
+		sqlSessionTemplate.delete("delete", num);
+	}
 	// 클릭한 게시물 정보 불러오기
 	public BoardVO read(int num) {
 		return sqlSessionTemplate.selectOne("read", num);

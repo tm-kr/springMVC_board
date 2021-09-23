@@ -71,6 +71,10 @@ public class BoardService {
 	public void write(BoardVO boardVO) {
 		boardDAO.write(boardVO);
 	}
+	// 게시글 삭제
+	public void delete(int num) {
+		boardDAO.delete(num);
+	}
 	// 클릭한 게시물 정보 불러오기
 	public BoardVO read(int num) {
 		return boardDAO.read(num);
