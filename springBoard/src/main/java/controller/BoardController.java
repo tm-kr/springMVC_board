@@ -28,99 +28,108 @@ public class BoardController {
 		this.pageCalc = pageCalc;
 	}
 	
-	@RequestMapping(value="/index/{currentPage}") // 전체 게시글 최신순 정렬 조회
+	// 전체 게시글 최신순 정렬 조회
+	@RequestMapping(value="/index/{currentPage}") 
 	public String listPage(Model model, @PathVariable int currentPage) {
 		int articleCount = boardService.articleCount();
-		model.addAttribute("page",pageCalc.pageCalc(currentPage, articleCount));
-		model.addAttribute("boardList", boardService.listPage(pageCalc.pageCalc(currentPage, articleCount)));
+		PageVO page = pageCalc.pageCalc(currentPage, articleCount);
+		model.addAttribute("page",page);
+		model.addAttribute("boardList", boardService.listPage(page));
 		return "/index";
 	}
-	@RequestMapping(value="/popular/{currentPage}") // 전체 게시글 조회순 정렬 조회
+	// 전체 게시글 조회순 정렬 조회
+	@RequestMapping(value="/popular/{currentPage}")
 	public String popularListPage(Model model, @PathVariable int currentPage) {
 		int articleCount = boardService.articleCount();
-		model.addAttribute("page",pageCalc.pageCalc(currentPage, articleCount));
-		model.addAttribute("boardList", boardService.popularList(pageCalc.pageCalc(currentPage, articleCount)));
+		PageVO page = pageCalc.pageCalc(currentPage, articleCount);
+		model.addAttribute("page",page);
+		model.addAttribute("boardList", boardService.popularList(page));
 		return "/sort/popular";
 	}
-	
-	@RequestMapping(value="/free/{currentPage}") // 자유 게시판 글 최신순 정렬 조회
+	// 자유 게시판 글 최신순 정렬 조회
+	@RequestMapping(value="/free/{currentPage}") 
 	public String freeList(Model model, @PathVariable int currentPage) {
 		int articleCount = boardService.freeArticleCount();
-		model.addAttribute("page",pageCalc.pageCalc(currentPage, articleCount));
-		model.addAttribute("boardList", boardService.freeList(pageCalc.pageCalc(currentPage, articleCount)));
+		PageVO page = pageCalc.pageCalc(currentPage, articleCount);
+		model.addAttribute("page",page);
+		model.addAttribute("boardList", boardService.freeList(page));
 		return "/freeList";
 	}
-	
-	@RequestMapping(value="/freePopular/{currentPage}") // 자유 게시판 글 조회순 정렬 조회
+	// 자유 게시판 글 조회순 정렬 조회
+	@RequestMapping(value="/freePopular/{currentPage}") 
 	public String freePopularList(Model model, @PathVariable int currentPage) {
 		int articleCount = boardService.freeArticleCount();
-		model.addAttribute("page",pageCalc.pageCalc(currentPage, articleCount));
-		model.addAttribute("boardList", boardService.freePopularList(pageCalc.pageCalc(currentPage, articleCount)));
+		PageVO page = pageCalc.pageCalc(currentPage, articleCount);
+		model.addAttribute("page",page);
+		model.addAttribute("boardList", boardService.freePopularList(page));
 		return "sort/freePopular";
 	}
-	
-	@RequestMapping(value="/humor/{currentPage}") // 유머 게시판 글 최신순 정렬 조회
+	// 유머 게시판 글 최신순 정렬 조회
+	@RequestMapping(value="/humor/{currentPage}") 
 	public String humorList(Model model, @PathVariable int currentPage) {
 		int articleCount = boardService.humorArticleCount();
-		model.addAttribute("page",pageCalc.pageCalc(currentPage, articleCount));
-		model.addAttribute("boardList", boardService.humorList(pageCalc.pageCalc(currentPage, articleCount)));
+		PageVO page = pageCalc.pageCalc(currentPage, articleCount);
+		model.addAttribute("page",page);
+		model.addAttribute("boardList", boardService.humorList(page));
 		return "/humorList";
 	}
-	
-	@RequestMapping(value="/humorPopular/{currentPage}") // 유머 게시판 글 조회순 정렬 조회
+	// 유머 게시판 글 조회순 정렬 조회
+	@RequestMapping(value="/humorPopular/{currentPage}") 
 	public String humorPopularList(Model model, @PathVariable int currentPage) {
 		int articleCount = boardService.humorArticleCount();
-		model.addAttribute("page",pageCalc.pageCalc(currentPage, articleCount));
-		model.addAttribute("boardList", boardService.humorPopularList(pageCalc.pageCalc(currentPage, articleCount)));
+		PageVO page = pageCalc.pageCalc(currentPage, articleCount);
+		model.addAttribute("page",page);
+		model.addAttribute("boardList", boardService.humorPopularList(page));
 		return "sort/humorPopular";
 	}
-	
-	@RequestMapping(value="/read/{num}") // 게시글 상세 보기
+	// 게시글 상세 보기
+	@RequestMapping(value="/read/{num}") 
 	public String read(Model model, @PathVariable int num) {
 		boardService.views(num);
 		model.addAttribute("boardVO", boardService.read(num));
 		return "/read";
 	}
-	
-	@RequestMapping(value="/write", method=RequestMethod.GET) // 글쓰기 페이지
+	// 글쓰기 페이지
+	@RequestMapping(value="/write", method=RequestMethod.GET) 
 	public String write() {
 		return "/write";
 	}
-	
-	@RequestMapping(value="/write", method=RequestMethod.POST) // 글쓰기
+	// 글쓰기
+	@RequestMapping(value="/write", method=RequestMethod.POST) 
 	public String write(BoardVO boardVO) {
 		boardService.write(boardVO);
 		return "redirect:/index/1";
 	}
-	
-	@RequestMapping(value="/delete/{num}") // 글 삭제하기
+	// 글 삭제하기
+	@RequestMapping(value="/delete/{num}") 
 	public String delete( @PathVariable int num) {
 		boardService.delete(num);
 		return "redirect:/myPost/1";
 	}
-	
-	@RequestMapping(value="/edit/{num}", method=RequestMethod.GET) //  글 수정 페이지
+	//  글 수정 페이지
+	@RequestMapping(value="/edit/{num}", method=RequestMethod.GET) 
 	public String edit(Model model, @PathVariable int num) {
 		model.addAttribute("boardVO", boardService.read(num));
 		return "/edit";
 	}
-	@RequestMapping(value="/edit/{num}", method=RequestMethod.POST) // 글 수정하기
+	// 글 수정하기
+	@RequestMapping(value="/edit/{num}", method=RequestMethod.POST) 
 	public String edit(BoardVO boardVO) {
 		boardService.edit(boardVO);
 		return "redirect:/read/{num}";
 	}
-	
-	@RequestMapping(value="/news") // 긴급 뉴스 페이지
+	// 긴급 뉴스 페이지
+	@RequestMapping(value="/news") 
 	public String news() {
 		return "/news";
 	}
-	
-	@RequestMapping(value="/notice") // 공지사항 페이지
+	// 공지사항 페이지
+	@RequestMapping(value="/notice") 
 	public String notice() {
 		return "/notice";
 	}
-	
-	@RequestMapping(value="/myPost/{currentPage}") // 내 게시글 리스트
+	// 내 게시글 리스트
+	@RequestMapping(value="/myPost/{currentPage}") 
 	public String myPost(Model model, HttpSession session, @PathVariable int currentPage) {
 		String id = (String) session.getAttribute("id");
 		int articleCount = boardService.myPostArticleCount(id);
