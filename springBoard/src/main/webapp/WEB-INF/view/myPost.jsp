@@ -11,6 +11,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 	<div class="header shadow">
 		<div class="header2">
 			<h3 style="float: left"><a href="${pageContext.request.contextPath}/index/1" style="color: white">Simple board</a></h3>
@@ -21,29 +22,76 @@
 				<button style="float: right" type="button" class="btn btn-outline-light" onclick="location.href='${pageContext.request.contextPath}/logout'">로그아웃</button>
 			</c:if>
 		</div>
-		
 	</div>
 	
+	
 	<div class="container">
-		<div class="content2">
-		
+		<div class="content ">
 			<div class="contentL">
-				<div class="content-read shadow-sm">
-					<div class="content-header">
-						<h3 >[ 긴급뉴스 ]</h3><br>
-					</div>
-					
-					<div class="content-mid">
-						<h6>긴급뉴스가 없습니다.</h6>
-					</div>
-					<div class="content-bottom">
-						<button type="button" class="btn btn-info" onclick="location.href='${pageContext.request.contextPath}/index/1'" >목록</button>
+				<div class="search2 shadow-sm">
+					<div class="search-top">
+						<h4 style="float: left; color: #98a0a7">게시글 리스트</h4>
+						<c:if test="${not empty sessionScope.id }">
+							<div style="float: right"><a href="${pageContext.request.contextPath}/write"><img alt="" src="${pageContext.request.contextPath}/resources/img/write.jpg"></a></div>
+						</c:if>
 					</div>
 				</div>
+				
+				<div class="list shadow-sm">
+					<c:if test="${empty boardList}">
+							<img class="mt-5" alt="" src="${pageContext.request.contextPath}/resources/img/noserch.jpg">
+					</c:if>
+					
+					<c:if test="${not empty boardList}">
+						<c:forEach var="board" items="${boardList }" varStatus="loop">
+						<a href="<c:url value="/read/${board.num }"/>">
+							<div class="list-card ">
+									<div class="card">
+										  <div class="card-header">
+										   ${board.writer }<div style="float: right">조회수 ${board.views }</div>
+										  </div>
+										  <div class="card-body list-group-item list-group-item-action">
+										    <h5 class="card-title">${board.title }</h5>
+										    <p class="card-text ul-title">${board.category } | 작성일: ${board.regdate } </p>
+										  </div>
+									</div>
+							</div>
+						</a>
+						</c:forEach>
+					</c:if>
+					
+					
+					
+					<c:if test="${not empty boardList}">
+						<nav aria-label="Page navigation example">
+						  <ul class="pagination mt-3" >
+						    <li class="page-item">
+						      <a class="page-link" href="${pageContext.request.contextPath}/myPost/${page.startPage + 2 - page.countPage}" aria-label="Previous">
+						        <span aria-hidden="true">&laquo;</span>
+						      </a>
+						    </li>
+						    
+						    <c:forEach var="i"  begin="${page.startPage }" end="${page.endPage }">
+						    	<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/myPost/${i}">${i}</a></li>
+						    </c:forEach>
+						    
+						    <c:if test="${page.block > page.endPage}">
+						    <li class="page-item">
+						      <a class="page-link" href="${pageContext.request.contextPath}/myPost/${page.startPage + page.countPage}" aria-label="Next">
+						        <span aria-hidden="true">&raquo;</span>
+						      </a>
+						    </li>
+						    </c:if>
+						  </ul>
+						</nav>
+					</c:if>
+					
+				</div>	
 			</div>
+			
 		
 			<div class="profile shadow-sm">
-				 <c:if test="${empty sessionScope.id }">
+				<c:if test="${empty sessionScope.id }">
 					 <div class="d-grid gap-2 profile-top">
 						   <button class="btn btn-info" type="button" onclick="location.href='${pageContext.request.contextPath}/login'">로그인</button>
 						   <button class="btn btn-info" type="button" onclick="location.href='${pageContext.request.contextPath}/join'">회원가입</button>
@@ -70,7 +118,7 @@
 				 	<h6 class="ul-title">커뮤니티</h6>
 				 	<h5><a style="color: black" href="${pageContext.request.contextPath}/free/1">자유</a></h5>
 				 	<h5><a style="color: black" href="${pageContext.request.contextPath}/humor/1">유머</a></h5>
-				 	<h5 style="text-decoration: line-through">팬 아트</h5>
+				 	<h5 style="text-decoration: line-through;">팬 아트</h5>
 				 </div>
 			</div>
 			

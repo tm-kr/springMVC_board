@@ -1,5 +1,6 @@
 package service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -56,6 +57,16 @@ public class BoardService {
 	public List<BoardVO> humorPopularList(PageVO pageVO) {
 		return boardDAO.humorPopularList(pageVO);
 	}
+	// 내 글 갯수 조회
+	public int myPostArticleCount(String id) {
+		return boardDAO.myPostArticleCount(id);
+	}
+	// 내 글 리스트 가져오기
+	public List<BoardVO> myPostList(HashMap<String, Object> hm) {
+		return boardDAO.myPostList(hm);
+	}
+	
+	
 	// 게시글 작성 
 	public void write(BoardVO boardVO) {
 		boardDAO.write(boardVO);

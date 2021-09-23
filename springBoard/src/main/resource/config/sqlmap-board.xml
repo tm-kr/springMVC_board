@@ -3,69 +3,82 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="boardDAO">
-
-	<!-- 페이지 조회 페이징처리 -->
-	<select id="listPage" parameterType="pageVO" resultType="boardVO">
-		 <![CDATA[
-		  select * from (select rownum rnum, board.* from
-		(select * from board order by NUM desc) board)
-		where rnum >= #{first} and rnum <= #{second}
-		 ]]>
-	</select>
 	
-	<select id="popularList" parameterType="pageVO" resultType="boardVO">
-		 <![CDATA[
-		  select * from (select rownum rnum, board.* from
-		(select * from board order by views desc) board)
-		where rnum >= #{first} and rnum <= #{second}
-		 ]]>
-	</select>
+	<!-- (전체 글, 자유, 유머 게시판 글) 갯수 가져오기 -->
+		<select id="articleCount" resultType="int">
+			select count(*) from BOARD
+		</select>
+		
+		<select id="freeArticleCount" resultType="int">
+			select count(*) from BOARD WHERE category = '자유'
+		</select>
+		
+		<select id="humorArticleCount" resultType="int">
+			select count(*) from BOARD WHERE category = '유머'
+		</select>
 	
-	<!-- 전체 글 갯수 가져오기 -->
-	<select id="articleCount" resultType="int">
-		select count(*) from BOARD
-	</select>
+	<!-- 전체 글 페이징 처리 및 최신순 조회순 정렬 -->
+		<select id="listPage" parameterType="pageVO" resultType="boardVO">
+			 <![CDATA[
+			  select * from (select rownum rnum, board.* from
+			(select * from board order by NUM desc) board)
+			where rnum >= #{first} and rnum <= #{second}
+			 ]]>
+		</select>
+		
+		<select id="popularList" parameterType="pageVO" resultType="boardVO">
+			 <![CDATA[
+			  select * from (select rownum rnum, board.* from
+			(select * from board order by views desc) board)
+			where rnum >= #{first} and rnum <= #{second}
+			 ]]>
+		</select>
 	
-	<select id="freeArticleCount" resultType="int">
-		select count(*) from BOARD WHERE category = '자유'
-	</select>
+	<!-- 자유 게시판 글 페이징 처리 및 최신순 조회순 정렬 -->
+		<select id="freeList" parameterType="pageVO" resultType="boardVO">
+			 <![CDATA[
+			  select * from (select rownum rnum, board.* from
+			(select * from board where category='자유' order by NUM desc) board)
+			where rnum >= #{first} and rnum <= #{second}
+			 ]]>
+		</select>
+		
+		<select id="freePopularList" parameterType="pageVO" resultType="boardVO">
+			 <![CDATA[
+			  select * from (select rownum rnum, board.* from
+			(select * from board where category='자유' order by views desc) board)
+			where rnum >= #{first} and rnum <= #{second}
+			 ]]>
+		</select>
 	
-	<select id="humorArticleCount" resultType="int">
-		select count(*) from BOARD WHERE category = '유머'
+	<!-- 유머 게시판 글 페이징 처리 및 최신순 조회순 정렬 -->
+		<select id="humorList" parameterType="pageVO" resultType="boardVO">
+			 <![CDATA[
+			  select * from (select rownum rnum, board.* from
+			(select * from board where category='유머' order by NUM desc) board)
+			where rnum >= #{first} and rnum <= #{second}
+			 ]]>
+		</select>
+		<select id="humorPopularList" parameterType="pageVO" resultType="boardVO">
+			 <![CDATA[
+			  select * from (select rownum rnum, board.* from
+			(select * from board where category='유머' order by views desc) board)
+			where rnum >= #{first} and rnum <= #{second}
+			 ]]>
+		</select>
+		
+	<!-- 내 게시글 갯수 및 내 게시물 가져오기 -->
+	<select id="myPostArticleCount" parameterType="String" resultType="int">
+				select count(*) from BOARD WHERE writer = #{id}
 	</select>
-	
-	<select id="freeList" parameterType="pageVO" resultType="boardVO">
-		 <![CDATA[
-		  select * from (select rownum rnum, board.* from
-		(select * from board where category='자유' order by NUM desc) board)
-		where rnum >= #{first} and rnum <= #{second}
-		 ]]>
+	<select id="myPostList" parameterType="hashMap" resultType="boardVO">
+			 <![CDATA[
+			  select * from (select rownum rnum, board.* from
+			(select * from board where writer=#{id} order by num desc) board)
+			where rnum >= #{first} and rnum <= #{second}
+			 ]]>
 	</select>
-	
-	<select id="freePopularList" parameterType="pageVO" resultType="boardVO">
-		 <![CDATA[
-		  select * from (select rownum rnum, board.* from
-		(select * from board where category='자유' order by views desc) board)
-		where rnum >= #{first} and rnum <= #{second}
-		 ]]>
-	</select>
-	
-	<select id="humorList" parameterType="pageVO" resultType="boardVO">
-		 <![CDATA[
-		  select * from (select rownum rnum, board.* from
-		(select * from board where category='유머' order by NUM desc) board)
-		where rnum >= #{first} and rnum <= #{second}
-		 ]]>
-	</select>
-	
-	<select id="humorPopularList" parameterType="pageVO" resultType="boardVO">
-		 <![CDATA[
-		  select * from (select rownum rnum, board.* from
-		(select * from board where category='유머' order by views desc) board)
-		where rnum >= #{first} and rnum <= #{second}
-		 ]]>
-	</select>
-	
+		
 	<!-- 게시물 보기 -->
 	<select id="read" parameterType="int" resultType="boardVO">
 		select * from BOARD

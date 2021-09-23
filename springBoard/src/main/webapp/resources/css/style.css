@@ -52,6 +52,12 @@ body{
 	height: 113px;
 	background: white;
 }
+.search2{
+	padding: 1rem;
+	width : 719px;
+	height: 63px;
+	background: white;
+}
 .search-cate{
 	font-size: 23px;
 }

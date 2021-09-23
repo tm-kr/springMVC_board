@@ -64,7 +64,7 @@
 						</div>
 					</a>
 					</c:forEach>
-					
+					<c:if test="${not empty boardList}">
 					<nav aria-label="Page navigation example">
 					  <ul class="pagination mt-3" >
 					    <li class="page-item">
@@ -86,6 +86,7 @@
 					    </c:if>
 					  </ul>
 					</nav>
+					</c:if>
 					
 				</div>	
 			</div>
@@ -102,7 +103,7 @@
 				 	<div class="profile-top">
 				 		<h6 class="ul-title id-title">${id}님 환영합니다!</h6>
 				 		<button class="btn btn-info" type="button" onclick="location.href='${pageContext.request.contextPath}/write'">글쓰기</button>
-				 		<button class="btn btn-outline-info" type="button" onclick="location.href='${pageContext.request.contextPath}/login'">내가 쓴 글</button>
+				 		<button class="btn btn-outline-info" type="button" onclick="location.href='${pageContext.request.contextPath}/myPost/1'">내가 쓴 글</button>
 				 		<button class="btn btn-outline-info" type="button" onclick="location.href='${pageContext.request.contextPath}/login'">내정보</button>
 					</div>
 				</c:if>

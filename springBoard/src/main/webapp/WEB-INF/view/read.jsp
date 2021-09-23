@@ -32,13 +32,20 @@
 					<div class="content-header">
 						<h3 >${boardVO.title }</h3>
 						<h6 class="ul-title">${boardVO.regdate } &nbsp;|&nbsp;  ${boardVO.writer }  &nbsp;|&nbsp;  조회 ${boardVO.views}</h6>
+						
 					</div>
 					
 					<div class="content-mid">
 						${boardVO.content }
 					</div>
 					<div class="content-bottom">
-						<button type="button" class="btn btn-info" onclick="location.href='${pageContext.request.contextPath}/index/1'" >목록</button>
+						<c:if test="${boardVO.writer == sessionScope.id }">
+								<button type="button" class="btn btn-outline-danger" onclick="location.href='${pageContext.request.contextPath}/login'">삭제</button>
+						</c:if>
+						<button type="button" class="btn btn-outline-info" onclick="location.href='${pageContext.request.contextPath}/index/1'" >목록</button>
+						<c:if test="${boardVO.writer == sessionScope.id }">
+								<button type="button" class="btn btn-outline-secondary" onclick="location.href='${pageContext.request.contextPath}/login'">수정</button>
+						</c:if>
 					</div>
 				</div>
 			</div>
@@ -54,7 +61,7 @@
 				 	<div class="profile-top">
 				 		<h6 class="ul-title id-title">${id}님 환영합니다!</h6>
 				 		<button class="btn btn-info" type="button" onclick="location.href='${pageContext.request.contextPath}/write'">글쓰기</button>
-				 		<button class="btn btn-outline-info" type="button" onclick="location.href='${pageContext.request.contextPath}/login'">내가 쓴 글</button>
+				 		<button class="btn btn-outline-info" type="button" onclick="location.href='${pageContext.request.contextPath}/myPost/1'">내가 쓴 글</button>
 				 		<button class="btn btn-outline-info" type="button" onclick="location.href='${pageContext.request.contextPath}/login'">내정보</button>
 					</div>
 				</c:if>

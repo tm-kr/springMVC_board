@@ -1,5 +1,6 @@
 package model;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -53,6 +54,14 @@ public class BoardDAO {
 	// 유머 게시판 조회순 정렬
 	public List<BoardVO> humorPopularList(PageVO pageVO) {
 		return sqlSessionTemplate.selectList("humorPopularList", pageVO);
+	}
+	//	내 글 갯수 조회
+	public int myPostArticleCount(String id) {
+		return sqlSessionTemplate.selectOne("myPostArticleCount", id);
+	}
+	// 내글 리스트 가져오기
+	public List<BoardVO> myPostList(HashMap<String, Object> hm){
+		return sqlSessionTemplate.selectList("myPostList", hm);
 	}
 	// 글 작성
 	public void write(BoardVO boardVO) {

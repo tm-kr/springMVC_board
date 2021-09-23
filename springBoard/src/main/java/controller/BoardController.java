@@ -1,5 +1,9 @@
 package controller;
 
+import java.util.HashMap;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -8,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import model.BoardVO;
 import paging.PageCalc;
+import paging.PageVO;
 import service.BoardService;
 
 @Controller
@@ -96,6 +101,22 @@ public class BoardController {
 	@RequestMapping(value="/notice") // 공지사항 페이지
 	public String notice() {
 		return "/notice";
+	}
+	
+	@RequestMapping(value="/myPost/{currentPage}") // 내 게시글 보기
+	public String myPost(Model model, HttpSession session, @PathVariable int currentPage) {
+		String id = (String) session.getAttribute("id");
+		int articleCount = boardService.myPostArticleCount(id);
+		System.out.println(id);
+		PageVO page = pageCalc.pageCalc(currentPage, articleCount);
+		HashMap<String, Object> hm = new HashMap<String, Object>();
+		hm.put("first", page.getFirst());
+		hm.put("second", page.getSecond());
+		hm.put("id", id);
+		System.out.println(hm.toString());
+		model.addAttribute("page", page);
+		model.addAttribute("boardList", boardService.myPostList(hm));
+		return "/myPost";
 	}
 	
 }

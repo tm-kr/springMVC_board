@@ -15,5 +15,5 @@
 		<mvc:jsp prefix="/WEB-INF/view/"/>
 	</mvc:view-resolvers>	  
 	
-	<mvc:view-controller path="/" view-name="index/1"/>
+	<mvc:view-controller path="/" view-name="login"/>
 </beans>
