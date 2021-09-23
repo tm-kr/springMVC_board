@@ -33,6 +33,7 @@
 						<h3 >${boardVO.title }</h3>
 						<h6 class="ul-title">${boardVO.regdate } &nbsp;|&nbsp;  ${boardVO.writer }  &nbsp;|&nbsp;  조회 ${boardVO.views}</h6>
 						
+						
 					</div>
 					
 					<div class="content-mid">
@@ -41,11 +42,9 @@
 					<div class="content-bottom">
 						<c:if test="${boardVO.writer == sessionScope.id }">
 								<button type="button" class="btn btn-outline-danger" onclick="location.href='${pageContext.request.contextPath}/login'">삭제</button>
-						</c:if>
-						<button type="button" class="btn btn-outline-info" onclick="location.href='${pageContext.request.contextPath}/index/1'" >목록</button>
-						<c:if test="${boardVO.writer == sessionScope.id }">
 								<button type="button" class="btn btn-outline-secondary" onclick="location.href='${pageContext.request.contextPath}/login'">수정</button>
 						</c:if>
+						<button type="button" class="btn btn-outline-info" onclick="location.href='${pageContext.request.contextPath}/index/1'" >목록</button>
 					</div>
 				</div>
 			</div>
