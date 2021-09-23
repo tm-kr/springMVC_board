@@ -67,6 +67,10 @@ public class BoardDAO {
 	public void write(BoardVO boardVO) {
 		sqlSessionTemplate.insert("write", boardVO);
 	}
+	// 글 수정
+	public void edit(BoardVO boardVO) {
+		sqlSessionTemplate.update("edit", boardVO);
+	}
 	// 글 삭제
 	public void delete(int num) {
 		sqlSessionTemplate.delete("delete", num);

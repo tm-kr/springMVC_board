@@ -97,6 +97,15 @@
 	<delete id="delete" parameterType="int">
 		DELETE FROM BOARD WHERE num = #{num}
 	</delete>
+	
+	<!-- 게시물 수정 -->
+	<update id="edit" parameterType="boardVO">
+		update "BOARD" set title = #{title},
+		content = #{content},
+		writer = #{writer}
+		WHERE num = #{num}
+	</update>
+	
 	<!-- 조회수 올라가기 -->
 	<update id="views" parameterType="int">
 		UPDATE BOARD SET views = views + 1 WHERE num = #{num}

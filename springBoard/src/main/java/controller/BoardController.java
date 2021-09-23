@@ -99,6 +99,17 @@ public class BoardController {
 		return "redirect:/myPost/1";
 	}
 	
+	@RequestMapping(value="/edit/{num}", method=RequestMethod.GET) //  글 수정 페이지
+	public String edit(Model model, @PathVariable int num) {
+		model.addAttribute("boardVO", boardService.read(num));
+		return "/edit";
+	}
+	@RequestMapping(value="/edit/{num}", method=RequestMethod.POST) // 글 수정하기
+	public String edit(BoardVO boardVO) {
+		boardService.edit(boardVO);
+		return "redirect:/read/{num}";
+	}
+	
 	@RequestMapping(value="/news") // 긴급 뉴스 페이지
 	public String news() {
 		return "/news";

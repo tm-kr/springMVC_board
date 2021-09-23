@@ -71,6 +71,10 @@ public class BoardService {
 	public void write(BoardVO boardVO) {
 		boardDAO.write(boardVO);
 	}
+	// 게시글 수정
+	public void edit(BoardVO boardVO) {
+		boardDAO.edit(boardVO);
+	}
 	// 게시글 삭제
 	public void delete(int num) {
 		boardDAO.delete(num);
