@@ -102,7 +102,7 @@
 				 		<h6 class="ul-title id-title">${id}님 환영합니다!</h6>
 				 		<button class="btn btn-info" type="button" onclick="location.href='${pageContext.request.contextPath}/write'">글쓰기</button>
 				 		<button class="btn btn-outline-info" type="button" onclick="location.href='${pageContext.request.contextPath}/myPost/1'">내가 쓴 글</button>
-				 		<button class="btn btn-outline-info" type="button" onclick="location.href='${pageContext.request.contextPath}/login'">내정보</button>
+				 		<button class="btn btn-outline-info" type="button" onclick="location.href='${pageContext.request.contextPath}/setting'">내정보</button>
 					</div>
 				</c:if>
 				 <div class="profile-mid">
