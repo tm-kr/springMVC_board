@@ -39,8 +39,8 @@
 					<div>
 						<div class="search-cate" style="float: left"><a style ="color: #98a0a7" href="${pageContext.request.contextPath}/index/1">최신순</a>  
 																	<a style ="color: #98a0a7" href="${pageContext.request.contextPath}/popular/1">조회순</a></div>  
-						<form class="d-flex" style="float: right">
-					      <input class="form-control me-2" type="search" placeholder="검색할 내용" aria-label="Search">
+						<form class="d-flex" style="float: right" action="index">
+					      <input class="form-control me-2" type="search" placeholder="검색할 내용" aria-label="Search" name="search">
 					      <button class="btn btn-secondary" type="submit">search</button>
 						</form>
 					</div>
