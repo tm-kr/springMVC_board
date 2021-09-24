@@ -11,9 +11,24 @@
 		(#{id}, #{password}, #{name}, #{email})
 	</insert>
 	
-	<select id="login" parameterType="LoginCommand" resultType="LoginCommand">
+	<select id="login" parameterType="loginCommand" resultType="loginCommand">
 		SELECT * FROM
 		MEMBER WHERE id = #{id}
 	</select>
+	
+	<select id="info" parameterType="String" resultType="memberVO">
+		SELECT * FROM
+		MEMBER WHERE id = #{id}
+	</select>
+	
+	<select id="getPass" parameterType="String" resultType="memberVO">
+		SELECT * FROM
+		MEMBER WHERE id = #{id}
+	</select>
+	
+	<update id="updatePass" parameterType="hashMap">
+		update "MEMBER" set password = #{newPass}
+		WHERE id = #{id}
+	</update>
 	
 </mapper>

@@ -1,5 +1,7 @@
 package service;
 
+import java.util.HashMap;
+
 import org.springframework.stereotype.Service;
 
 import controller.LoginCommand;
@@ -26,6 +28,18 @@ public class MemberService {
 	public LoginCommand login(LoginCommand loginCommand) {
 		return memberDAO.login(loginCommand);
 		
+	}
+	
+	public MemberVO info(String id) {
+		return memberDAO.info(id);
+	}
+	
+	public MemberVO getPass(String id) {
+		return memberDAO.getPass(id);
+	}
+	
+	public void updatePass(HashMap<String, Object> hm) {
+		memberDAO.updatePass(hm);
 	}
 	
 }

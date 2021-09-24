@@ -128,11 +128,6 @@ public class BoardController {
 	public String notice() {
 		return "/notice";
 	}
-	// 마이 페이지
-	@RequestMapping(value="/setting") 
-	public String setting() {
-		return "/setting";
-	}
 	// 내 게시글 리스트
 	@RequestMapping(value="/myPost/{currentPage}") 
 	public String myPost(Model model, HttpSession session, @PathVariable int currentPage) {

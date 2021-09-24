@@ -1,5 +1,7 @@
 package model;
 
+import java.util.HashMap;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -24,5 +26,17 @@ public class MemberDAO {
 	public LoginCommand login(LoginCommand loginCommand) {
 		LoginCommand lm = (LoginCommand)sqlSessionTemplate.selectOne("login", loginCommand);
 		return lm;
+	}
+	
+	public MemberVO info(String id) {
+		return sqlSessionTemplate.selectOne("info", id);
+	}
+	
+	public MemberVO getPass(String id) {
+		return sqlSessionTemplate.selectOne("getPass", id);
+	}
+	
+	public void updatePass(HashMap<String, Object> hm) {
+		sqlSessionTemplate.update("updatePass", hm);
 	}
 }

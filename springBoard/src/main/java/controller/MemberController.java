@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.HashMap;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -52,6 +54,34 @@ public class MemberController {
 	public String logout(HttpSession session) {
 		session.invalidate();
 		return "redirect:/index/1";
+	}
+	// 마이 페이지
+	@RequestMapping(value="/setting", method=RequestMethod.GET) 
+	public String setting(Model model, HttpSession session) {
+		String id = (String) session.getAttribute("id");
+		model.addAttribute("member", memberService.info(id));
+		return "/setting";
+	}
+	// 마이 페이지
+	@RequestMapping(value="/setting", method=RequestMethod.POST) 
+	public String setting(Model model, HttpSession session, String oldPass, String newPass) {
+		String id = (String) session.getAttribute("id");
+		HashMap<String, Object> hm = new HashMap<String, Object>();
+		hm.put("newPass", newPass);
+		hm.put("id", id);
+		System.out.println(oldPass);
+		System.out.println(memberService.getPass(id).getPassword());
+		System.out.println(hm);
+		try {
+			if(oldPass.equals(memberService.getPass(id).getPassword())) {
+				memberService.updatePass(hm);
+				return "redirect:/index/1";
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("member", memberService.info(id));
+		return "/setting";
 	}
 	
 

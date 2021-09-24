@@ -34,22 +34,22 @@
 		   	</tr>
 			<tr>
 			   	<th scope="row" class="table-active">아이디</th>
-			    <td colspan="3" >svs1014</td>
+			    <td colspan="3" >${member.id }</td>
 		   	</tr>
 		   	<tr>
 			   	<th scope="row" class="table-active">이름</th>
-			    <td colspan="3" >김태민</td>
+			    <td colspan="3" >${member.name }</td>
 		   	</tr>
 		   	<tr>
 			   	<th scope="row" class="table-active">이메일</th>
-			    <td colspan="3" >svs1014@naver.com</td>
+			    <td colspan="3" >${member.email }</td>
 		   	</tr>
 		</table>
 		<h4 class="mt-5 mb-5">비밀번호 변경</h4>
 		<div style="width: 300px; margin: auto;">
 			<form:form commandName="boardVO" method="POST">
-				<input type="password" class="form-control" name="password"><br>
-				<input type="password" class="form-control" name="password"><br>
+				<input type="password" placeholder="현재 비밀번호 입력" class="form-control" name="oldPass"><br>
+				<input type="password" placeholder="신규 비밀번호 입력" class="form-control" name="newPass"><br>
 				<div class="d-grid gap-2">
 				  <button class="btn btn-info" type="submit">변경하기</button>
 				</div>
