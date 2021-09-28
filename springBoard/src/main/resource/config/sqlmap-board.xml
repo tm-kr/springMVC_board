@@ -21,7 +21,7 @@
 		<select id="listPage" parameterType="pageVO" resultType="boardVO">
 			 <![CDATA[
 			  select * from (select rownum rnum, board.* from
-			(select * from board order by NUM desc) board)
+			(select * from board where title LIKE '%'||#{search}||'%' order by NUM desc) board)
 			where rnum >= #{first} and rnum <= #{second}
 			 ]]>
 		</select>

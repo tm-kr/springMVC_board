@@ -11,10 +11,13 @@ public class PageVO {
 	private int first; //fist 부터 second 까지의 게시물을 보여준다
 	private int second;
 	private int block; // 게시글 목록 갯수 위의 페이지 갯수의 끝 번호 일 것이다.
+	private String search; // 검색내용
 	
 	public PageVO() {
 	}
-	public PageVO(int startPage, int endPage, int countPage, int currentPage, int first, int second, int block) {
+	
+	public PageVO(int startPage, int endPage, int countPage, int currentPage, int first, int second, int block,
+			String search) {
 		super();
 		this.startPage = startPage;
 		this.endPage = endPage;
@@ -23,8 +26,8 @@ public class PageVO {
 		this.first = first;
 		this.second = second;
 		this.block = block;
+		this.search = search;
 	}
-	
 	public int getStartPage() {
 		return startPage;
 	}
@@ -68,7 +71,14 @@ public class PageVO {
 
 	public void setBlock(int block) {
 		this.block = block;
-	}	
+	}
+	public String getSearch() {
+		return search;
+	}
+	public void setSearch(String search) {
+		this.search = search;
+	}
+	
 	
 	
 }

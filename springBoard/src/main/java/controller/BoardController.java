@@ -9,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import model.BoardVO;
 import paging.PageCalc;
@@ -30,9 +32,16 @@ public class BoardController {
 	
 	// 전체 게시글 최신순 정렬 조회
 	@RequestMapping(value="/index/{currentPage}") 
-	public String listPage(Model model, @PathVariable int currentPage) {
+	public String listPage(Model model, @PathVariable int currentPage, String search) {
+		System.out.println(search);
 		int articleCount = boardService.articleCount();
 		PageVO page = pageCalc.pageCalc(currentPage, articleCount);
+		if(search != null) {
+			page.setSearch(search);
+		}else {
+			search = "";
+			page.setSearch(search);
+		}
 		model.addAttribute("page",page);
 		model.addAttribute("boardList", boardService.listPage(page));
 		return "/index";
