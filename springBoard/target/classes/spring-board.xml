@@ -64,7 +64,6 @@
  	 	<property name="pageVO" ref="pageVO" />
   </bean>
   
-  <bean id="pageVO" class="paging.PageVO">
-  </bean>
+  <bean id="pageVO" class="paging.PageVO"/>
   
 </beans>

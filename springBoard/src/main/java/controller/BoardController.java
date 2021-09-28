@@ -29,19 +29,21 @@ public class BoardController {
 	public void setPageCalc(PageCalc pageCalc) {
 		this.pageCalc = pageCalc;
 	}
-	
 	// 전체 게시글 최신순 정렬 조회
 	@RequestMapping(value="/index/{currentPage}") 
 	public String listPage(Model model, @PathVariable int currentPage, String search) {
-		System.out.println(search);
-		int articleCount = boardService.articleCount();
-		PageVO page = pageCalc.pageCalc(currentPage, articleCount);
+		PageVO page = new PageVO();
 		if(search != null) {
+			int searchArticleCount = boardService.searchArticleCount(search);
+			page = pageCalc.pageCalc(currentPage, searchArticleCount);
 			page.setSearch(search);
 		}else {
 			search = "";
+			int articleCount = boardService.articleCount();
+			page = pageCalc.pageCalc(currentPage, articleCount);
 			page.setSearch(search);
 		}
+		
 		model.addAttribute("page",page);
 		model.addAttribute("boardList", boardService.listPage(page));
 		return "/index";

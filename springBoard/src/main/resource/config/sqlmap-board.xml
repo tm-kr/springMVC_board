@@ -16,6 +16,10 @@
 		<select id="humorArticleCount" resultType="int">
 			select count(*) from BOARD WHERE category = '유머'
 		</select>
+		<select id="searchArticleCount" resultType="int">
+			select count(*) from BOARD WHERE title LIKE '%'||#{search}||'%'
+		</select>
+		
 	
 	<!-- 전체 글 페이징 처리 및 최신순 조회순 정렬 -->
 		<select id="listPage" parameterType="pageVO" resultType="boardVO">

@@ -63,6 +63,14 @@ public class BoardDAO {
 	public List<BoardVO> myPostList(HashMap<String, Object> hm){
 		return sqlSessionTemplate.selectList("myPostList", hm);
 	}
+	// 검색 글 갯수 조회
+	public int searchArticleCount(String search) {
+		return sqlSessionTemplate.selectOne("searchArticleCount", search);
+	}
+	
+	
+	
+	
 	// 글 작성
 	public void write(BoardVO boardVO) {
 		sqlSessionTemplate.insert("write", boardVO);

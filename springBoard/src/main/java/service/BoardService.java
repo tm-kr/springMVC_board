@@ -65,6 +65,10 @@ public class BoardService {
 	public List<BoardVO> myPostList(HashMap<String, Object> hm) {
 		return boardDAO.myPostList(hm);
 	}
+	// 검색 글 갯수 조회
+	public int searchArticleCount(String search) {
+		return boardDAO.searchArticleCount(search);
+	}
 	
 	
 	// 게시글 작성 
