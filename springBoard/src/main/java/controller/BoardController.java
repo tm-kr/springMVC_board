@@ -50,45 +50,97 @@ public class BoardController {
 	}
 	// 전체 게시글 조회순 정렬 조회
 	@RequestMapping(value="/popular/{currentPage}")
-	public String popularListPage(Model model, @PathVariable int currentPage) {
-		int articleCount = boardService.articleCount();
-		PageVO page = pageCalc.pageCalc(currentPage, articleCount);
+	public String popularListPage(Model model, @PathVariable int currentPage, String search) {
+		PageVO page = new PageVO();
+		if(search != null) {
+			int searchArticleCount = boardService.searchArticleCount(search);
+			page = pageCalc.pageCalc(currentPage, searchArticleCount);
+			page.setSearch(search);
+		}else {
+			search = "";
+			int articleCount = boardService.articleCount();
+			page = pageCalc.pageCalc(currentPage, articleCount);
+			page.setSearch(search);
+		}
+		
 		model.addAttribute("page",page);
 		model.addAttribute("boardList", boardService.popularList(page));
 		return "/sort/popular";
 	}
 	// 자유 게시판 글 최신순 정렬 조회
 	@RequestMapping(value="/free/{currentPage}") 
-	public String freeList(Model model, @PathVariable int currentPage) {
-		int articleCount = boardService.freeArticleCount();
-		PageVO page = pageCalc.pageCalc(currentPage, articleCount);
+	public String freeList(Model model, @PathVariable int currentPage, String search) {
+		PageVO page = new PageVO();
+		if(search != null) {
+			int searchArticleCount = boardService.searchArticleCount(search);
+			page = pageCalc.pageCalc(currentPage, searchArticleCount);
+			page.setSearch(search);
+		}else {
+			search = "";
+			int articleCount = boardService.freeArticleCount();
+			page = pageCalc.pageCalc(currentPage, articleCount);
+			page.setSearch(search);
+		}
+		
 		model.addAttribute("page",page);
 		model.addAttribute("boardList", boardService.freeList(page));
 		return "/freeList";
 	}
 	// 자유 게시판 글 조회순 정렬 조회
 	@RequestMapping(value="/freePopular/{currentPage}") 
-	public String freePopularList(Model model, @PathVariable int currentPage) {
-		int articleCount = boardService.freeArticleCount();
-		PageVO page = pageCalc.pageCalc(currentPage, articleCount);
+	public String freePopularList(Model model, @PathVariable int currentPage, String search) {
+		PageVO page = new PageVO();
+		if(search != null) {
+			int searchArticleCount = boardService.searchArticleCount(search);
+			page = pageCalc.pageCalc(currentPage, searchArticleCount);
+			page.setSearch(search);
+		}else {
+			search = "";
+			int articleCount = boardService.freeArticleCount();
+			page = pageCalc.pageCalc(currentPage, articleCount);
+			page.setSearch(search);
+		}
+		
 		model.addAttribute("page",page);
 		model.addAttribute("boardList", boardService.freePopularList(page));
 		return "sort/freePopular";
+		
 	}
 	// 유머 게시판 글 최신순 정렬 조회
 	@RequestMapping(value="/humor/{currentPage}") 
-	public String humorList(Model model, @PathVariable int currentPage) {
-		int articleCount = boardService.humorArticleCount();
-		PageVO page = pageCalc.pageCalc(currentPage, articleCount);
+	public String humorList(Model model, @PathVariable int currentPage, String search) {
+		PageVO page = new PageVO();
+		if(search != null) {
+			int searchArticleCount = boardService.searchArticleCount(search);
+			page = pageCalc.pageCalc(currentPage, searchArticleCount);
+			page.setSearch(search);
+		}else {
+			search = "";
+			int articleCount = boardService.humorArticleCount();
+			page = pageCalc.pageCalc(currentPage, articleCount);
+			page.setSearch(search);
+		}
+		
 		model.addAttribute("page",page);
 		model.addAttribute("boardList", boardService.humorList(page));
 		return "/humorList";
+		
 	}
 	// 유머 게시판 글 조회순 정렬 조회
 	@RequestMapping(value="/humorPopular/{currentPage}") 
-	public String humorPopularList(Model model, @PathVariable int currentPage) {
-		int articleCount = boardService.humorArticleCount();
-		PageVO page = pageCalc.pageCalc(currentPage, articleCount);
+	public String humorPopularList(Model model, @PathVariable int currentPage, String search) {
+		PageVO page = new PageVO();
+		if(search != null) {
+			int searchArticleCount = boardService.searchArticleCount(search);
+			page = pageCalc.pageCalc(currentPage, searchArticleCount);
+			page.setSearch(search);
+		}else {
+			search = "";
+			int articleCount = boardService.humorArticleCount();
+			page = pageCalc.pageCalc(currentPage, articleCount);
+			page.setSearch(search);
+		}
+		
 		model.addAttribute("page",page);
 		model.addAttribute("boardList", boardService.humorPopularList(page));
 		return "sort/humorPopular";
