@@ -91,4 +91,5 @@ public class BoardDAO {
 	public void views(int num) {
 		sqlSessionTemplate.selectOne("views",num);
 	}
+
 }
