@@ -26,12 +26,12 @@
 	</div>
 	
 	<div class="container">
-		<div class="login ">
+		<div class="join">
 			<div class="mt-5 mb-5 border-bottom">
 				<h2 class="mb-3"><b>Simple board</b></h2>
 			</div>
 			<form:form commandName="memberVO" method="POST">
-				<div class="join">
+				<div class="join2">
 					<label><b>아이디</b></label>
 					<input type="text" class="form-control" name="id" ><br>
 					<label><b>비밀번호</b></label>

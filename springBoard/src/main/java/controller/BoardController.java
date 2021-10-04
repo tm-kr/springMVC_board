@@ -44,6 +44,7 @@ public class BoardController {
 			page.setSearch(search);
 		}
 		
+		model.addAttribute("search",search);
 		model.addAttribute("page",page);
 		model.addAttribute("boardList", boardService.listPage(page));
 		return "/index";
@@ -62,7 +63,7 @@ public class BoardController {
 			page = pageCalc.pageCalc(currentPage, articleCount);
 			page.setSearch(search);
 		}
-		
+		model.addAttribute("search",search);
 		model.addAttribute("page",page);
 		model.addAttribute("boardList", boardService.popularList(page));
 		return "/sort/popular";
