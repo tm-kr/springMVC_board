@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!--  마이바티스 설정 -->
+	
+	<settings>
+		<setting name="cacheEnabled" value="false"/>
+		<setting name="useGeneratedKeys" value="false"/>
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
+        <setting name="jdbcTypeForNull" value="NULL" />
+	</settings>
+	
+	<typeAliases>
+		<typeAlias alias="memberVO" type="model.MemberVO"/>
+		<typeAlias alias="boardVO" type="model.BoardVO"/>
+		<typeAlias alias="loginCommand" type="controller.LoginCommand"/>
+		<typeAlias alias="pageVO" type="paging.PageVO"/>
+	</typeAliases>
+	
+</configuration>
