@@ -55,18 +55,18 @@
 						<nav aria-label="Page navigation example">
 						  <ul class="pagination mt-3" >
 						    <li class="page-item">
-						      <a class="page-link" href="myPost/${page.startPage + 2 - page.countPage}" aria-label="Previous">
+						      <a class="page-link" href="myPost?pageNum=${page.startPage + 2 - page.countPage}" aria-label="Previous">
 						        <span aria-hidden="true">&laquo;</span>
 						      </a>
 						    </li>
 						    
 						    <c:forEach var="i"  begin="${page.startPage }" end="${page.endPage }">
-						    	<li class="page-item"><a class="page-link" href="myPost/${i}">${i}</a></li>
+						    	<li class="page-item"><a class="page-link" href="myPost?pageNum=${i}">${i}</a></li>
 						    </c:forEach>
 						    
 						    <c:if test="${page.block > page.endPage}">
 						    <li class="page-item">
-						      <a class="page-link" href="myPost/${page.startPage + page.countPage}" aria-label="Next">
+						      <a class="page-link" href="myPost?pageNum=${page.startPage + page.countPage}" aria-label="Next">
 						        <span aria-hidden="true">&raquo;</span>
 						      </a>
 						    </li>

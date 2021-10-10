@@ -18,7 +18,7 @@
 			<div class="contentL">
 				<div class="search shadow-sm">
 					<div class="search-top">
-						<h2 style="float: left">전체</h2>
+						<h2 style="float: left"><a href="index" style="color: black" >전체</a></h2>
 						<c:if test="${not empty sessionScope.id }">
 							<div style="float: right">
 								<a href="write"><img alt="" src="/resources/img/write.jpg"></a>
@@ -66,19 +66,19 @@
 						<nav aria-label="Page navigation example">
 							<ul class="pagination mt-3">
 								<li class="page-item"><a class="page-link"
-									href="index?pageNum=${page.startPage + 2 - page.countPage}"
+									href="index?sort=${sort }&pageNum=${page.startPage + 2 - page.countPage}&search=${search}"
 									aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 								</a></li>
 
 								<c:forEach var="i" begin="${page.startPage }"
 									end="${page.endPage }">
 									<li class="page-item"><a class="page-link"
-										href="index?pageNum=${i}">${i}</a></li>
+										href="index?sort=${sort }&pageNum=${i}&search=${search}">${i}</a></li>
 								</c:forEach>
 
 								<c:if test="${page.block > page.endPage}">
 									<li class="page-item"><a class="page-link"
-										href="index?pageNum=${page.startPage + page.countPage}"
+										href="index?sort=${sort }&pageNum=${page.startPage + page.countPage}&search=${search}"
 										aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 									</a></li>
 								</c:if>

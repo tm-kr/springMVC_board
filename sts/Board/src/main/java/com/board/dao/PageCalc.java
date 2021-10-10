@@ -1,9 +1,15 @@
 package com.board.dao;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import com.board.dto.PageVO;
 
+@Component
 public class PageCalc {
-private PageVO pageVO;
+	
+	@Autowired
+	private PageVO pageVO;
 	
 	public PageVO getPageVO() {
 		return pageVO;

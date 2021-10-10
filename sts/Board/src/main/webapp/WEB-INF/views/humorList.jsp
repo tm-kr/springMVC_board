@@ -20,68 +20,71 @@
 			<div class="contentL">
 				<div class="search shadow-sm">
 					<div class="search-top">
-						<h2 style="float: left">유머</h2>
+						<h2 style="float: left"><a href="index" style="color: black" >유머</a></h2>
 						<c:if test="${not empty sessionScope.id }">
 						<div style="float: right"><a href="write"><img alt="" src="resources/img/write.jpg"></a></div>
 						</c:if>
 					</div>
 					<br><br>
 					<div>
-						<div class="search-cate" style="float: left"><a style ="color: #98a0a7" href="humor?search=${search }">최신순</a>  
-																	<a style ="color: #98a0a7" href="humor?sort=popular&search=${search}">조회순</a></div>  
+						<div class="search-cate" style="float: left">
+							<a style="color: #98a0a7"href="humor?search=${search}">최신순</a>
+							<a style="color: #98a0a7"href="humor?sort=popular&search=${search}">조회순</a>
+						</div>
 						<form class="d-flex" style="float: right" action="">
-					      <input class="form-control me-2" type="search" placeholder="검색할 내용" aria-label="Search" name="search">
-					      <button class="btn btn-secondary" type="submit">search</button>
+							<input class="form-control me-2" type="search"
+								placeholder="검색할 내용" aria-label="Search" name="search"
+								value="${search }">
+							<button class="btn btn-secondary" type="submit">search</button>
 						</form>
 					</div>
-					  
-					
+
 				</div>
 				<div class="list shadow-sm">
 					<c:if test="${empty boardList}">
-							<img class="mt-5" alt="" src="resources/img/noserch.jpg">
+						<img class="mt-5" alt=""src="resources/img/noserch.jpg">
 					</c:if>
-					
 					<c:forEach var="board" items="${boardList }" varStatus="loop">
 						<a href="<c:url value="/read/${board.num }"/>">
-						<div class="list-card ">
+							<div class="list-card ">
 								<div class="card">
-									  <div class="card-header">
-									   ${board.writer }<div style="float: right">조회수 ${board.views }</div>
-									  </div>
-									  <div class="card-body list-group-item list-group-item-action">
-									    <h5 class="card-title">${board.title }</h5>
-									    <p class="card-text ul-title">${board.category } | 작성일: ${board.regdate } </p>
-									  </div>
+									<div class="card-header">
+										${board.writer }
+										<div style="float: right">조회수 ${board.views }</div>
+									</div>
+									<div class="card-body list-group-item list-group-item-action">
+										<h5 class="card-title">${board.title }</h5>
+										<p class="card-text ul-title">${board.category }| 작성일:
+											${board.regdate }</p>
+									</div>
 								</div>
-						</div>
-					</a>
+							</div>
+						</a>
 					</c:forEach>
 					<c:if test="${not empty boardList}">
-					<nav aria-label="Page navigation example">
-					  <ul class="pagination mt-3" >
-					    <li class="page-item">
-					      <a class="page-link" href="humor/${page.startPage + 2 - page.countPage}" aria-label="Previous">
-					        <span aria-hidden="true">&laquo;</span>
-					      </a>
-					    </li>
-					    
-					    <c:forEach var="i"  begin="${page.startPage }" end="${page.endPage }">
-					    	<li class="page-item"><a class="page-link" href="humor/${i}">${i}</a></li>
-					    </c:forEach>
-					    
-					    <c:if test="${page.block > page.endPage}">
-					    <li class="page-item">
-					      <a class="page-link" href="humor/${page.startPage + page.countPage}" aria-label="Next">
-					        <span aria-hidden="true">&raquo;</span>
-					      </a>
-					    </li>
-					    </c:if>
-					  </ul>
-					</nav>
+						<nav aria-label="Page navigation example">
+							<ul class="pagination mt-3">
+								<li class="page-item"><a class="page-link"
+									href="humor?sort=${sort }&pageNum=${page.startPage + 2 - page.countPage}&search=${search}"
+									aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+								</a></li>
+
+								<c:forEach var="i" begin="${page.startPage }"
+									end="${page.endPage }">
+									<li class="page-item"><a class="page-link"
+										href="humor?sort=${sort }&pageNum=${i}&search=${search}">${i}</a></li>
+								</c:forEach>
+
+								<c:if test="${page.block > page.endPage}">
+									<li class="page-item"><a class="page-link"
+										href="humor?sort=${sort }&pageNum=${page.startPage + page.countPage}&search=${search}"
+										aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+									</a></li>
+								</c:if>
+							</ul>
+						</nav>
 					</c:if>
-					
-				</div>	
+				</div>
 			</div>
 			
 			<jsp:include page="common/sidebar.jsp" flush="false" />

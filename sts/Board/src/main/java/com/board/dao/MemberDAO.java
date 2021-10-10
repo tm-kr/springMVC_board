@@ -3,13 +3,17 @@ package com.board.dao;
 import java.util.HashMap;
 
 import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.board.dto.LoginCommand;
 import com.board.dto.MemberVO;
 
+@Repository
 public class MemberDAO {
 	private SqlSessionTemplate sqlSessionTemplate;
 	
+	@Autowired
 	public MemberDAO(SqlSessionTemplate sqlSessionTemplate) {
 		this.sqlSessionTemplate = sqlSessionTemplate;
 	}

@@ -4,13 +4,17 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.board.dto.BoardVO;
 import com.board.dto.PageVO;
 
+@Repository
 public class BoardDAO {
 	private SqlSessionTemplate sqlSessionTemplate;
-
+	
+	@Autowired
 	public BoardDAO(SqlSessionTemplate sqlSessionTemplate) {
 		this.sqlSessionTemplate = sqlSessionTemplate;
 	}
@@ -65,6 +69,14 @@ public class BoardDAO {
 	// 검색 글 갯수 조회
 	public int searchArticleCount(String search) {
 		return sqlSessionTemplate.selectOne("searchArticleCount", search);
+	}
+	// 자유 게시판 검색 글 갯수 조회
+	public int freeSearchArticleCount(String search) {
+		return sqlSessionTemplate.selectOne("freeSearchArticleCount", search);
+	}
+	// 자유 게시판 검색 글 갯수 조회
+	public int humorSearchArticleCount(String search) {
+		return sqlSessionTemplate.selectOne("humorSearchArticleCount", search);
 	}
 	
 	

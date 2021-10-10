@@ -2,18 +2,19 @@ package com.board.service;
 
 import java.util.HashMap;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.board.dao.MemberDAO;
 import com.board.dto.LoginCommand;
 import com.board.dto.MemberVO;
 
+@Service
 public class MemberService {
 	private MemberDAO memberDAO;
 
-	public MemberDAO getMemberDAO() {
-		return memberDAO;
-	}
-
-	public void setMemberDAO(MemberDAO memberDAO) {
+	@Autowired
+	public MemberService(MemberDAO memberDAO) {
 		this.memberDAO = memberDAO;
 	}
 	// 회원가입

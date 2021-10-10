@@ -1,5 +1,8 @@
 package com.board.dto;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class MemberVO {
 	private String id;
 	private String password;

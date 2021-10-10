@@ -2,7 +2,25 @@
 <!DOCTYPE configuration
     PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-config.dtd">
-<configuration>
- 
+<configuration>	
+	<settings>
+		<setting name="cacheEnabled" value="false"/>
+		<setting name="useGeneratedKeys" value="false"/>
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
+        <setting name="jdbcTypeForNull" value="NULL" />
+	</settings>
+	
+	<typeAliases>
+<!-- 	<typeAlias alias="memberVO" type="model.MemberVO"/>
+		<typeAlias alias="boardVO" type="model.BoardVO"/>
+		<typeAlias alias="loginCommand" type="controller.LoginCommand"/>
+		<typeAlias alias="pageVO" type="paging.PageVO"/>      			-->
+		
+		<typeAlias alias="memberVO" type="com.board.dto.MemberVO"/>
+		<typeAlias alias="boardVO" type="com.board.dto.BoardVO"/>
+		<typeAlias alias="loginCommand" type="com.board.dto.LoginCommand"/>
+		<typeAlias alias="pageVO" type="com.board.dto.PageVO"/>
+	</typeAliases>
+ 	
 </configuration>
 

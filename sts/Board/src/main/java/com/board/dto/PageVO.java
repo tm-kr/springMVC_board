@@ -1,5 +1,8 @@
 package com.board.dto;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class PageVO {
 	private int startPage; // 시작페이지
 	private int endPage; // 끝 페이지

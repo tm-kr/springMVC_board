@@ -6,8 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<link rel="stylesheet" href="resources/css/style.css" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"rel="stylesheet"integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"crossorigin="anonymous">
+<link rel="stylesheet"href="/resources/css/style.css" />
 <title>Insert title here</title>
 </head>
 <body>
@@ -34,7 +34,7 @@
 								<button type="button" class="btn btn-outline-danger" onclick="delete_Event()">삭제</button>
 								<button type="button" class="btn btn-outline-secondary" onclick="location.href='<c:url value="/edit/${boardVO.num }"/>'">수정</button>
 						</c:if>
-						<button type="button" class="btn btn-outline-info" onclick="location.href='index'" >목록</button>
+						<button type="button" class="btn btn-outline-info" onclick="location.href='/index'" >목록</button>
 					</div>
 				</div>
 			</div>

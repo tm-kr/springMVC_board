@@ -2,6 +2,9 @@ package com.board.dto;
 
 import java.sql.Timestamp;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class BoardVO {
 	private int num;
 	private String category;

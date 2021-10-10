@@ -163,9 +163,6 @@ textarea{
 .card {
     position: inherit;
 }
-
-element.style {
-}
 .page-item:not(:first-child) .page-link {
     margin-left: -1px;
 }

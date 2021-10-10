@@ -3,6 +3,7 @@ package com.board.service;
 import java.util.HashMap;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.board.dao.BoardDAO;
@@ -14,13 +15,11 @@ public class BoardService {
 	
 	private BoardDAO boardDAO;
 	
-	public BoardDAO getBoardDAO() {
-		return boardDAO;
-	}
-	
-	public void setBoardDAO(BoardDAO boardDAO) {
+	@Autowired
+	public BoardService(BoardDAO boardDAO) {
 		this.boardDAO = boardDAO;
 	}
+	
 	// 전체 글 갯수 조회
 	public int articleCount() {
 		return boardDAO.articleCount();
@@ -69,7 +68,14 @@ public class BoardService {
 	public int searchArticleCount(String search) {
 		return boardDAO.searchArticleCount(search);
 	}
-	
+	// 자유 게시판 검색 글 갯수 조회
+	public int freeSearchArticleCount(String search) {
+		return boardDAO.freeSearchArticleCount(search);
+	}
+	// 유머 게시판 검색 글 갯수 조회
+	public int humorSearchArticleCount(String search) {
+		return boardDAO.freeSearchArticleCount(search);
+	}
 	
 	// 게시글 작성 
 	public void write(BoardVO boardVO) {
