@@ -7,8 +7,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class BoardController {
+	@RequestMapping(value="/", method = RequestMethod.GET)
+	public String home(Model model) {
+		return "index";
+	}
 	
-	@RequestMapping(value="/index", method = RequestMethod.GET)
+	@RequestMapping(value="/index")
 	public String index(Model model) {
 		return "index";
 	}
