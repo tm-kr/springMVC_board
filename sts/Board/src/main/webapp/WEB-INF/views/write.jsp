@@ -19,7 +19,7 @@
 		
 			<div class="contentL shadow-sm">
 				<div>
-					<form:form commandName="boardVO" method="POST">
+					<form action="/write" method="post" enctype="multipart/form-data">
 						<div class="write">
 							<h3>글쓰기</h3><br>
 							<select class="form-select" aria-label="Default select example" name="category">
@@ -27,7 +27,7 @@
 							  <option value="유머">유머 게시판</option>
 							</select><br> 
 							<input type="text" class="form-control" placeholder="제목 (10자 이내)" name="title" ><br>
-							<input class="form-control" type="file" id="formFile" name="uploadFile"><br>
+							<input class="form-control" type="file" id="formFile" name="file"><br>
 							<textarea class="form-control" placeholder="파일 설명  (1000자 이내)" name="content"></textarea>
 							<div class="btn1 mt-3">
 								<button type="submit" class="btn btn-outline-secondary" >작성하기</button>	
@@ -35,7 +35,7 @@
 							</div>
 						</div>
 						<input type="hidden" name="writer" value="${id}">
-					</form:form>
+					</form>
 				</div>
 					  
 					

@@ -55,7 +55,7 @@
 									</div>
 									<div class="card-body list-group-item list-group-item-action">
 										<h5 class="card-title">${board.title }</h5>
-										<p class="card-text ul-title">${board.category }| 작성일:
+										<p class="card-text ul-title">${board.category } | 작성일:
 											${board.regdate }</p>
 									</div>
 								</div>

@@ -96,11 +96,14 @@
    </select>
    
    <!-- 게시물 작성 -->
-   <insert id="write" parameterType="boardVO">
+   <insert id="write" parameterType="boardVO"  useGeneratedKeys="true" keyProperty="num">
+      <selectKey keyProperty="num" resultType="int" order="BEFORE">
+	    	SELECT BOARD_SEQ.NEXTVAL FROM DUAL
+	   </selectKey>
       insert into "BOARD" 
       (num, category, title, writer, regdate, views, content) 
       values
-      (BOARD_SEQ.nextval, #{category}, #{title}, #{writer}, SYSDATE, 0, #{content})
+      (#{num}, #{category}, #{title}, #{writer}, SYSDATE, 0, #{content})
    </insert>
    
    <!-- 게시물 삭제 -->
@@ -121,4 +124,21 @@
       UPDATE BOARD SET views = views + 1 WHERE num = #{num}
    </update>
    
+   <!-- 첨부파일 DB 저장 -->
+    <insert id="insertFile" parameterType="hashMap">
+		INSERT INTO MP_FILE(
+			FILE_NO,
+			BNO,
+			ORG_FILE_NAME,
+			STORED_FILE_NAME,
+			FILE_SIZE
+		)VALUES(
+			SEQ_MP_FILE_NO.NEXTVAL,
+			#{BNO},
+			#{ORG_FILE_NAME},
+			#{STORED_FILE_NAME},
+			#{FILE_SIZE}
+		)
+    </insert>
+    
 </mapper>

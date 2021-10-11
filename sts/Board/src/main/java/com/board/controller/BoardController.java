@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.board.dao.PageCalc;
 import com.board.dto.BoardVO;
@@ -120,7 +121,7 @@ public class BoardController {
       return "humorList";
    }
    
-   // 게시글 상세 보기
+   	  // 게시글 상세 보기
       @RequestMapping(value="/read/{num}") 
       public String read(Model model, @PathVariable int num) {
          boardService.views(num);
@@ -134,8 +135,9 @@ public class BoardController {
       }
       // 글쓰기
       @RequestMapping(value="/write", method=RequestMethod.POST) 
-      public String write(BoardVO boardVO) {
-         boardService.write(boardVO);
+      public String write(BoardVO boardVO, MultipartHttpServletRequest mpRequest) throws Exception {
+    	 System.out.println("컨트롤러 실행");
+         boardService.write(boardVO, mpRequest);
          return "redirect:/index";
       }
       // 글 삭제하기

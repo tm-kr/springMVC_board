@@ -2,22 +2,27 @@ package com.board.service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.board.dao.BoardDAO;
 import com.board.dto.BoardVO;
 import com.board.dto.PageVO;
+import com.board.util.FileUtils;
 
 @Service
 public class BoardService {
 	
 	private BoardDAO boardDAO;
+	private FileUtils fileUtils;
 	
 	@Autowired
-	public BoardService(BoardDAO boardDAO) {
+	public BoardService(BoardDAO boardDAO, FileUtils fileUtils) {
 		this.boardDAO = boardDAO;
+		this.fileUtils = fileUtils;
 	}
 	
 	// 전체 글 갯수 조회
@@ -78,8 +83,15 @@ public class BoardService {
 	}
 	
 	// 게시글 작성 
-	public void write(BoardVO boardVO) {
+	public void write(BoardVO boardVO, MultipartHttpServletRequest mpRequest) throws Exception {
+		System.out.println("서비스 실행");
 		boardDAO.write(boardVO);
+		
+		List<Map<String,Object>> list = fileUtils.parseInsertFileInfo(boardVO, mpRequest); 
+		int size = list.size();
+		for(int i=0; i<size; i++){ 
+			boardDAO.insertFile(list.get(i)); 
+		}
 	}
 	// 게시글 수정
 	public void edit(BoardVO boardVO) {

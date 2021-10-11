@@ -2,6 +2,7 @@ package com.board.dao;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,9 +82,14 @@ public class BoardDAO {
 	
 	
 	
-	
+	//첨부파일 업로드
+	public void insertFile(Map<String, Object> map) throws Exception {
+		System.out.println("insertFile dao 실행");
+		sqlSessionTemplate.insert("insertFile", map);
+	}
 	// 글 작성
 	public void write(BoardVO boardVO) {
+		System.out.println("write dao 실행");
 		sqlSessionTemplate.insert("write", boardVO);
 	}
 	// 글 수정
