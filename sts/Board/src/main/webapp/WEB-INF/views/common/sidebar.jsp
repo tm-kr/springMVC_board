@@ -38,6 +38,10 @@
 				 	<h5><a style="color: black" href="/humor">유머</a></h5>
 				 	<h5 style="text-decoration: line-through;">팬 아트</h5>
 				 </div>
+				 
+				 <div class="">
+				 	<img alt="" src="/resources/img/advertisement.png" style="margin-top: 8%;" >
+				 </div>
 			</div>
 </body>
 </html>

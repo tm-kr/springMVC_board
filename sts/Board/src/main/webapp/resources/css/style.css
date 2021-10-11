@@ -46,6 +46,7 @@ body{
 	float : left;
 }
 .search{
+	border:1px solid #c7c8cb ;
 	padding: 1rem;
 	width : 719px;
 	height: 113px;
@@ -61,12 +62,14 @@ body{
 	font-size: 23px;
 }
 .list{
+	border:1px solid #c7c8cb ;
 	margin-top : 25px;
 	width : 719px;
 	height: 730px;
 	background: white;
 }
 .profile{
+	border:1px solid #c7c8cb ;
 	float : right;
 	height: 480px;
 	width : 300px;
