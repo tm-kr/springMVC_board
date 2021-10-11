@@ -74,7 +74,7 @@ public class BoardService {
 	}
 	// 유머 게시판 검색 글 갯수 조회
 	public int humorSearchArticleCount(String search) {
-		return boardDAO.freeSearchArticleCount(search);
+		return boardDAO.humorSearchArticleCount(search);
 	}
 	
 	// 게시글 작성 
