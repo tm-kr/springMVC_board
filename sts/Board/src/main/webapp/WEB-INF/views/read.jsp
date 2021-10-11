@@ -27,7 +27,11 @@
 						${boardVO.content }
 					</div>
 					<div class="content-mid2">
-						<h6>업로드한 파일 : </h6>
+						<h6>업로드한 파일 : 
+							<c:forEach var="file" items="${file}">
+								<a href="/fileDown?fileNum=${file.FILE_NO }">${file.ORG_FILE_NAME}</a> (${file.FILE_SIZE}kb)
+							</c:forEach>
+						</h6>
 					</div>
 					<div class="content-bottom">
 						<c:if test="${boardVO.writer == sessionScope.id }">

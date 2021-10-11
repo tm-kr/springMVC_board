@@ -87,6 +87,7 @@ public class BoardService {
 		System.out.println("서비스 실행");
 		boardDAO.write(boardVO);
 		
+		//파일 업로드
 		List<Map<String,Object>> list = fileUtils.parseInsertFileInfo(boardVO, mpRequest); 
 		int size = list.size();
 		for(int i=0; i<size; i++){ 
@@ -104,6 +105,15 @@ public class BoardService {
 	// 클릭한 게시물 정보 불러오기
 	public BoardVO read(int num) {
 		return boardDAO.read(num);
+	}
+	// 업로드 파일 조회
+	public List<Map<String, Object>> selectFileList(int num) throws Exception {
+		return boardDAO.selectFileList(num);
+	}
+	// 첨부파일 다운로드
+	public Map<String, Object> selectFileInfo(int fileNum) throws Exception {
+		// TODO Auto-generated method stub
+		return boardDAO.selectFileInfo(fileNum);
 	}
 	// 조회수 + 1
 	public void views(int num) {

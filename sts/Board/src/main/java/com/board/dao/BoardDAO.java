@@ -87,6 +87,15 @@ public class BoardDAO {
 		System.out.println("insertFile dao 실행");
 		sqlSessionTemplate.insert("insertFile", map);
 	}
+	//첨부파일 조회
+	public List<Map<String, Object>> selectFileList(int num) throws Exception {
+		return sqlSessionTemplate.selectList("selectFileList", num);
+	}
+	// 첨부파일 다운로드
+	public Map<String, Object> selectFileInfo(int fileNum) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.selectOne("selectFileInfo", fileNum);
+	}
 	// 글 작성
 	public void write(BoardVO boardVO) {
 		System.out.println("write dao 실행");

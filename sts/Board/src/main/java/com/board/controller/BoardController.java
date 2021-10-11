@@ -1,7 +1,12 @@
 package com.board.controller;
 
+import java.io.File;
+import java.net.URLEncoder;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.board.dao.PageCalc;
@@ -123,8 +129,12 @@ public class BoardController {
    
    	  // 게시글 상세 보기
       @RequestMapping(value="/read/{num}") 
-      public String read(Model model, @PathVariable int num) {
+      public String read(Model model, @PathVariable int num) throws Exception {
          boardService.views(num);
+         
+         // 업로드 파일 조회하기
+         List<Map<String, Object>> fileList = boardService.selectFileList(num);
+ 		 model.addAttribute("file", fileList);
          model.addAttribute("boardVO", boardService.read(num));
          return "/read";
       }
@@ -133,13 +143,31 @@ public class BoardController {
       public String write() {
          return "/write";
       }
-      // 글쓰기
+      // 글쓰기 (파일 업로드)
       @RequestMapping(value="/write", method=RequestMethod.POST) 
       public String write(BoardVO boardVO, MultipartHttpServletRequest mpRequest) throws Exception {
-    	 System.out.println("컨트롤러 실행");
          boardService.write(boardVO, mpRequest);
          return "redirect:/index";
       }
+      // 파일 다운로드
+	  	@RequestMapping(value="/fileDown")
+	  	public void fileDown(int fileNum, HttpServletResponse response) throws Exception{
+	  		Map<String, Object> resultMap = boardService.selectFileInfo(fileNum);
+	  		String storedFileName = (String) resultMap.get("STORED_FILE_NAME");
+	  		String originalFileName = (String) resultMap.get("ORG_FILE_NAME");
+	  		System.out.println(originalFileName +", " + storedFileName);
+	  		
+	  		// 파일을 저장했던 위치에서 첨부파일을 읽어 byte[]형식으로 변환한다.
+	  		byte fileByte[] = org.apache.commons.io.FileUtils.readFileToByteArray(new File("C:\\mp\\file\\"+storedFileName));
+	  		
+	  		response.setContentType("application/octet-stream");
+	  		response.setContentLength(fileByte.length);
+	  		response.setHeader("Content-Disposition",  "attachment; fileName=\""+URLEncoder.encode(originalFileName, "UTF-8")+"\";");
+	  		response.getOutputStream().write(fileByte);
+	  		response.getOutputStream().flush();
+	  		response.getOutputStream().close();
+	  		
+	  	}
       // 글 삭제하기
       @RequestMapping(value="/delete/{num}") 
       public String delete( @PathVariable int num) {

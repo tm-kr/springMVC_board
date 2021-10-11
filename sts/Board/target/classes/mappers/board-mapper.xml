@@ -4,141 +4,178 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="boardDAO">
 
-    <!-- (전체 글, 자유, 유머 게시판 글) 갯수 가져오기 -->
-      <select id="articleCount" resultType="int">
-         select count(*) from BOARD
-      </select>
-      
-      <select id="freeArticleCount" resultType="int">
-         select count(*) from BOARD WHERE category = '자유'
-      </select>
-      
-      <select id="humorArticleCount" resultType="int">
-         select count(*) from BOARD WHERE category = '유머'
-      </select>
-      <select id="searchArticleCount" resultType="int">
-         select count(*) from BOARD WHERE title LIKE '%'||#{search}||'%'
-      </select>
-      <select id="freeSearchArticleCount" resultType="int">
-         select count(*) from BOARD WHERE category = '자유' and title LIKE '%'||#{search}||'%'
-      </select>
-      <select id="humorSearchArticleCount" resultType="int">
-         select count(*) from BOARD WHERE category = '유머' and title LIKE '%'||#{search}||'%'
-      </select>
-      
-   
-   <!-- 전체 글 페이징 처리 및 최신순 조회순 정렬 -->
-      <select id="listPage" parameterType="pageVO" resultType="boardVO">
+	<!-- (전체 글, 자유, 유머 게시판 글) 갯수 가져오기 -->
+	<select id="articleCount" resultType="int">
+		select count(*) from BOARD
+	</select>
+
+	<select id="freeArticleCount" resultType="int">
+		select count(*) from
+		BOARD WHERE category = '자유'
+	</select>
+
+	<select id="humorArticleCount" resultType="int">
+		select count(*) from
+		BOARD WHERE category = '유머'
+	</select>
+	<select id="searchArticleCount" resultType="int">
+		select count(*) from
+		BOARD WHERE title LIKE '%'||#{search}||'%'
+	</select>
+	<select id="freeSearchArticleCount" resultType="int">
+		select count(*)
+		from BOARD WHERE category = '자유' and title LIKE
+		'%'||#{search}||'%'
+	</select>
+	<select id="humorSearchArticleCount" resultType="int">
+		select count(*)
+		from BOARD WHERE category = '유머' and title LIKE
+		'%'||#{search}||'%'
+	</select>
+
+
+	<!-- 전체 글 페이징 처리 및 최신순 조회순 정렬 -->
+	<select id="listPage" parameterType="pageVO"
+		resultType="boardVO">
           <![CDATA[
            select * from (select rownum rnum, board.* from
          (select * from board where title LIKE '%'||#{search}||'%' order by NUM desc) board)
          where rnum >= #{first} and rnum <= #{second}
           ]]>
-      </select>
-      
-      <select id="popularList" parameterType="pageVO" resultType="boardVO">
+	</select>
+
+	<select id="popularList" parameterType="pageVO"
+		resultType="boardVO">
           <![CDATA[
            select * from (select rownum rnum, board.* from
          (select * from board  where title LIKE '%'||#{search}||'%' order by views desc) board)
          where rnum >= #{first} and rnum <= #{second}
           ]]>
-      </select>
-   
-   <!-- 자유 게시판 글 페이징 처리 및 최신순 조회순 정렬 -->
-      <select id="freeList" parameterType="pageVO" resultType="boardVO">
+	</select>
+
+	<!-- 자유 게시판 글 페이징 처리 및 최신순 조회순 정렬 -->
+	<select id="freeList" parameterType="pageVO"
+		resultType="boardVO">
           <![CDATA[
            select * from (select rownum rnum, board.* from
          (select * from board where category='자유' and title LIKE '%'||#{search}||'%'  order by NUM desc) board)
          where rnum >= #{first} and rnum <= #{second}
           ]]>
-      </select>
-      
-      <select id="freePopularList" parameterType="pageVO" resultType="boardVO">
+	</select>
+
+	<select id="freePopularList" parameterType="pageVO"
+		resultType="boardVO">
           <![CDATA[
            select * from (select rownum rnum, board.* from
          (select * from board where category='자유' and title LIKE '%'||#{search}||'%' order by views desc) board)
          where rnum >= #{first} and rnum <= #{second}
           ]]>
-      </select>
-   
-   <!-- 유머 게시판 글 페이징 처리 및 최신순 조회순 정렬 -->
-      <select id="humorList" parameterType="pageVO" resultType="boardVO">
+	</select>
+
+	<!-- 유머 게시판 글 페이징 처리 및 최신순 조회순 정렬 -->
+	<select id="humorList" parameterType="pageVO"
+		resultType="boardVO">
           <![CDATA[
            select * from (select rownum rnum, board.* from
          (select * from board where category='유머' and title LIKE '%'||#{search}||'%' order by NUM desc) board)
          where rnum >= #{first} and rnum <= #{second}
           ]]>
-      </select>
-      <select id="humorPopularList" parameterType="pageVO" resultType="boardVO">
+	</select>
+	<select id="humorPopularList" parameterType="pageVO"
+		resultType="boardVO">
           <![CDATA[
            select * from (select rownum rnum, board.* from
          (select * from board where category='유머' and title LIKE '%'||#{search}||'%' order by views desc) board)
          where rnum >= #{first} and rnum <= #{second}
           ]]>
-      </select>
-      
-   <!-- 내 게시글 갯수 및 내 게시물 가져오기 -->
-   <select id="myPostArticleCount" parameterType="String" resultType="int">
-            select count(*) from BOARD WHERE writer = #{id}
-   </select>
-   <select id="myPostList" parameterType="hashMap" resultType="boardVO">
+	</select>
+
+	<!-- 내 게시글 갯수 및 내 게시물 가져오기 -->
+	<select id="myPostArticleCount" parameterType="String"
+		resultType="int">
+		select count(*) from BOARD WHERE writer = #{id}
+	</select>
+	<select id="myPostList" parameterType="hashMap"
+		resultType="boardVO">
           <![CDATA[
            select * from (select rownum rnum, board.* from
          (select * from board where writer=#{id} order by num desc) board)
          where rnum >= #{first} and rnum <= #{second}
           ]]>
-   </select>
-      
-   <!-- 게시물 보기 -->
-   <select id="read" parameterType="int" resultType="boardVO">
-      select * from BOARD
-      WHERE num = #{num}
-   </select>
-   
-   <!-- 게시물 작성 -->
-   <insert id="write" parameterType="boardVO"  useGeneratedKeys="true" keyProperty="num">
-      <selectKey keyProperty="num" resultType="int" order="BEFORE">
-	    	SELECT BOARD_SEQ.NEXTVAL FROM DUAL
-	   </selectKey>
-      insert into "BOARD" 
-      (num, category, title, writer, regdate, views, content) 
-      values
-      (#{num}, #{category}, #{title}, #{writer}, SYSDATE, 0, #{content})
-   </insert>
-   
-   <!-- 게시물 삭제 -->
-   <delete id="delete" parameterType="int">
-      DELETE FROM BOARD WHERE num = #{num}
-   </delete>
-   
-   <!-- 게시물 수정 -->
-   <update id="edit" parameterType="boardVO">
-      update "BOARD" set title = #{title},
-      content = #{content},
-      writer = #{writer}
-      WHERE num = #{num}
-   </update>
-   
-   <!-- 조회수 올라가기 -->
-   <update id="views" parameterType="int">
-      UPDATE BOARD SET views = views + 1 WHERE num = #{num}
-   </update>
-   
-   <!-- 첨부파일 DB 저장 -->
-    <insert id="insertFile" parameterType="hashMap">
+	</select>
+
+	<!-- 게시물 보기 -->
+	<select id="read" parameterType="int" resultType="boardVO">
+		select * from
+		BOARD
+		WHERE num = #{num}
+	</select>
+
+	<!-- 게시물 작성 -->
+	<insert id="write" parameterType="boardVO"
+		useGeneratedKeys="true" keyProperty="num">
+		<selectKey keyProperty="num" resultType="int" order="BEFORE">
+			SELECT
+			BOARD_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		insert into "BOARD"
+		(num, category, title, writer, regdate, views,
+		content)
+		values
+		(#{num}, #{category}, #{title}, #{writer}, SYSDATE, 0,
+		#{content})
+	</insert>
+
+	<!-- 게시물 삭제 -->
+	<delete id="delete" parameterType="int">
+		DELETE FROM BOARD WHERE num =
+		#{num}
+	</delete>
+
+	<!-- 게시물 수정 -->
+	<update id="edit" parameterType="boardVO">
+		update "BOARD" set title =
+		#{title},
+		content = #{content},
+		writer = #{writer}
+		WHERE num = #{num}
+	</update>
+
+	<!-- 조회수 올라가기 -->
+	<update id="views" parameterType="int">
+		UPDATE BOARD SET views = views
+		+ 1 WHERE num = #{num}
+	</update>
+
+	<!-- 첨부파일 DB 저장 -->
+	<insert id="insertFile" parameterType="hashMap">
 		INSERT INTO MP_FILE(
-			FILE_NO,
-			BNO,
-			ORG_FILE_NAME,
-			STORED_FILE_NAME,
-			FILE_SIZE
+		FILE_NO,
+		BNO,
+		ORG_FILE_NAME,
+		STORED_FILE_NAME,
+		FILE_SIZE
 		)VALUES(
-			SEQ_MP_FILE_NO.NEXTVAL,
-			#{BNO},
-			#{ORG_FILE_NAME},
-			#{STORED_FILE_NAME},
-			#{FILE_SIZE}
+		SEQ_MP_FILE_NO.NEXTVAL,
+		#{BNO},
+		#{ORG_FILE_NAME},
+		#{STORED_FILE_NAME},
+		#{FILE_SIZE}
 		)
-    </insert>
-    
+	</insert>
+
+	<!-- 첨부파일 조회 -->
+	<select id="selectFileList" parameterType="int"
+		resultType="hashMap">
+		SELECT FILE_NO,
+		ORG_FILE_NAME,
+		ROUND(FILE_SIZE/1024,1) AS
+		FILE_SIZE
+		FROM MP_FILE
+		WHERE BNO = #{num}
+		AND DEL_GB = 'N'
+	</select>
+
+
+
 </mapper>
