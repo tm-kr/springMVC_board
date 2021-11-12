@@ -84,7 +84,6 @@ public class BoardDAO {
 	
 	//첨부파일 업로드
 	public void insertFile(Map<String, Object> map) throws Exception {
-		System.out.println("insertFile dao 실행");
 		sqlSessionTemplate.insert("insertFile", map);
 	}
 	//첨부파일 조회
@@ -98,7 +97,6 @@ public class BoardDAO {
 	}
 	// 글 작성
 	public void write(BoardVO boardVO) {
-		System.out.println("write dao 실행");
 		sqlSessionTemplate.insert("write", boardVO);
 	}
 	// 글 수정
